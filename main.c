@@ -1,5 +1,12 @@
-/* main.c */
-/* initialize queues */
+/* 
+   main.c
+   -Brandon Shumin
+   -Seth Kantz
+
+ initialize queues
+ */
+
+
 /* malloc new EV_ARRIVE event and passenger */
 event_t *start_ev;
 start_ev = event_create();
@@ -7,6 +14,7 @@ start_ev.passenger = (passenger_t *)malloc(sizeof(passenger_t));
 /* schedule EV_ARRIVE event at t=0 and put in event queue */
 start_ev.event_time = 0.0;
 event_schedule(start_ev);
+
 /* run main loop */
 while(!event_empty(eq))
 {
