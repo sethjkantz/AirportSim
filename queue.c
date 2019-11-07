@@ -23,7 +23,7 @@
 */
 
 qData * queue_init(){
-  
+
   queue *newQ = (queue *)malloc(sizeof(queue *));
   newQ->head = NULL;
   newQ->tail = NULL;
@@ -78,26 +78,46 @@ void queue_remove(qData *qptr, qData *d){
 	q->head = NULL;
 	q->tail = NULL;
       }else{
-	// if multiple elements	
+	// if multiple elements
 	q->head = temp->next;
 	q->head->prev = NULL;
       }
 
       if(d != NULL){
-	*d = temp->data;
+	       *d = temp->data;
       }
       testq("removed %p \n",temp);
       free(temp);
-      
+
     }
   }
 }
 
 /*
   TODO
+  check that this
   returns size of Q
 */
-int queue_size(qData *qPtr){}
+int queue_size(qData *qPtr){
+  queue *q = (queue *) *qptr;
+  qNode *rov;
+  int count = 0;
+
+  if(q=NULL) {
+    return 0;
+
+  } else {
+    rov = q->head;
+
+    while(rov != NULL){
+      count++;
+      rov = rov->next;
+    }
+
+    return count;
+  }
+
+}
 
 /*
   TODO

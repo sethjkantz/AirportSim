@@ -1,4 +1,4 @@
-/* 
+/*
    main.c
    -Brandon Shumin
    -Seth Kantz
@@ -11,6 +11,7 @@
 event_t *start_ev;
 start_ev = event_create();
 start_ev.passenger = (passenger_t *)malloc(sizeof(passenger_t));
+
 /* schedule EV_ARRIVE event at t=0 and put in event queue */
 start_ev.event_time = 0.0;
 event_schedule(start_ev);
