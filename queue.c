@@ -22,9 +22,9 @@
   initializes and returns a pointer to a new queue
 */
 
-qData * queue_init(){
+qData * queue_init(int size){
 
-  queue *newQ = (queue *)malloc(sizeof(queue *));
+  queue *newQ = size * (queue *)malloc(sizeof(queue));
   newQ->head = NULL;
   newQ->tail = NULL;
   return (qData)newQ;

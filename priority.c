@@ -11,8 +11,8 @@
   creates an empty array with a single NULL value as per malloc
   can be used as an array
 */
-int * make_PQ(void) {
-  int *heap = (int*)malloc(sizeof(int*));
+event_t * make_PQ(void) {
+  event_t *heap = (event_t*)malloc(sizeof(event_t*));
   return heap;
 }
 

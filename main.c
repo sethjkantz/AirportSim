@@ -2,7 +2,6 @@
    main.c
    -Brandon Shumin
    -Seth Kantz
-   
 
  initialize queues
  */
@@ -11,7 +10,6 @@ int main(void){
   /* malloc new EV_ARRIVE event and passenger */
   event_t *start_ev;
   start_ev = event_create();
-  start_ev.passenger = (passenger_t *)malloc(sizeof(passenger_t));
 
   /* schedule EV_ARRIVE event at t=0 and put in event queue */
   start_ev.event_time = 0.0;
@@ -39,6 +37,18 @@ int main(void){
       case (EV_AIRLINE) :
           break;
       case (EV_IDQ) :
+          break;
+      case (EV_ID) :
+          break;
+      case (EV_SCANQ) :
+          break;
+      case (EV_SCAN) :
+          break;
+      case (EV_TRAINQ) :
+          break;
+      case (EV_TRAIN) :
+          break;
+      case (EV_GATE) :
           break;
       /* remaining event types */
       default :

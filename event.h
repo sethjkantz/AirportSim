@@ -16,7 +16,11 @@ void event_init();
 void event_fini();
 
 /* allocate a fresh event with empty fields */
-event_t *event_create();
+event_t *event_create(void){
+  event_t *new_ev;
+  new_ev.passenger = (passenger_t *)malloc(sizeof(passenger_t));
+  new_ev.queue = (queue_t *)malloc(sizeof(queue_t));
+}
 
 /* free an event */
 void event_destroy(event_t *e);
