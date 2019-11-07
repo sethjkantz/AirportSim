@@ -7,12 +7,13 @@
 
 /*
   TODO
-  figure out how/if this works
+  figure if this works
+  creates an empty array with a single NULL value as per malloc
+  can be used as an array
 */
-
 int * make_PQ(void) {
-  int heap[];
-
+  int *heap = (int*)malloc(sizeof(int*));
+  return heap;
 }
 
 /*
@@ -41,5 +42,6 @@ int * max_heapify(int Arr[], int i, int n)
 
         Arr = max_heapify(Arr, largest,n);
     }
+
     return Arr;
  }
