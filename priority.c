@@ -11,8 +11,8 @@
   creates an empty array with a single NULL value as per malloc
   can be used as an array
 */
-event_t * make_PQ(void) {
-  event_t *heap = (event_t*)malloc(sizeof(event_t*));
+event_t *priority_init(int size) {
+  event_t *heap = size * (event_t*)malloc(sizeof(event_t*));
   return heap;
 }
 
@@ -20,8 +20,7 @@ event_t * make_PQ(void) {
   TODO
   code from online to max heapify, check if correct
 */
-int * max_heapify(int Arr[], int i, int n)
-{
+priority_t * max_heapify(priority_t *Arr, int i, int n) {
     int left = 2*i;                //left child
     int right = 2*i + 1;           //right child
     int largest;
@@ -45,3 +44,24 @@ int * max_heapify(int Arr[], int i, int n)
 
     return Arr;
  }
+
+priority_t * min_heapify (priority_t *Arr, int i, int n) {
+  int left  = 2*i;
+  int right = 2*i+1;
+  int smallest, temp;
+  if(left <= n and Arr[left] < Arr[i] )
+       smallest = left;
+  else
+      smallest = i;
+  if(right <= n and Arr[right] < Arr[smallest]){
+    smallest = right;
+  }
+  if(smallest != i) {
+      //swap Arr[i] and Arr[smallest]
+      temp = Arr[i];
+      Arr[i] = Arr[largest];
+      Arr[largest] = temp;
+      min_heapify (Arr, smallest,n);
+    }
+  return Arr;
+}
