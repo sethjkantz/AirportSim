@@ -1,1 +1,2 @@
-/* PQ implemented as a heap */
+/* PQ implemented as a heap   */
+/* also called the event queue*/

@@ -14,13 +14,13 @@ int priority_insert(priority_t *q, event_t *ev);
    and return it, return NULL if there is an error */
 event_t *priority_remove(priority_t *q);
 
-/* return non-zero if the priority queue us empty */
+/* return non-zero if the priority queue is empty */
 int priority_empty(priority_t *q);
 
 /* return nono-zero if the priority queue is full 
    This may be trivial using a linked implementation */
 int priority_full(priority_t *q);
 
-/* free all resourced used by the priority queue then free
+/* free all resources used by the priority queue then free
    the queue itself */
 void priority_finalize(priority_t *q);

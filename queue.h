@@ -11,7 +11,7 @@ queue_t *queue_init(int size);
 int queue_insert(queue_t *q, passenger_t *c);
 
 /* return the next item in the queue but do not remove it
-   return NULL if the queue is empty or on error */
+   return NULL if the queue is empty or an error */
 passenger_t *queue_peek(queue_t *q);
 
 /* remove the next item from the queue 
