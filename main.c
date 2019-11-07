@@ -2,6 +2,7 @@
    main.c
    -Brandon Shumin
    -Seth Kantz
+   -Bradly Sanders
 
  initialize queues
  */

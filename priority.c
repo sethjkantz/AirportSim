@@ -11,10 +11,71 @@
   creates an empty array with a single NULL value as per malloc
   can be used as an array
 */
-event_t *priority_init(int size) {
-  event_t *heap = size * (event_t*)malloc(sizeof(event_t*));
-  return heap;
+  priority_t *priority_init(int size) {
+    Heap *heap = (Heap *)malloc(sizeof(Heap));
+
+    if(heap==NULL){
+      printf("\nMemory Allocation Error in Structure Malloc.\n");
+      return;
+    }
+
+    heap->Items = 0;
+    heap->MAXCAPACITY = size;
+    heap-array = (int *)malloc(MAXCAPACITY*sizeof(int));
+
+    if(heap->array==NULL){
+      printf("\nMemory Allocation Error in Array Malloc\n");
+      return;
+    }
+    return heap;
 }
+
+/*
+  WIP
+  insert an item into the priority queue
+     return 0 if successful, -1 otherwise
+*/
+  int priority_insert(priority_t *heap, event_t *ev){
+    int index = heap->Items;
+    int success = 0;
+
+    if(priority_full(heap)!=0)
+    {
+      printf("\nQueue is full!\n");
+      success = -1;
+      return success;
+    }
+    else{
+      heap->array[index] = ev;
+      //min_heapify(heap,x,x) //FIX THIS
+      index++;
+    }
+
+    heap->Items = index;
+    return success;
+}
+
+  event_t *priority_remove(priority_t *heap){
+    event_t Event;
+
+    if(priority_empty(heap)!=0){
+      printf("\nEmpty Heap.\n");
+    }
+
+    Event = heap->array[0];
+    heap->array[0] = heap->array[heap->Items-1];
+    heap->Items--;
+    //min_heapify(heap,x,x) FIX THIS
+    return Event;
+  }
+
+  int priority_empty(priority_t *heap){
+    if(heap->Items == 0){
+      printf("Heap is Empty");
+      return -1;
+    }
+    return 0;
+  }
 
 /*
   TODO

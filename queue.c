@@ -2,6 +2,7 @@
 /*
   Seth Kantz
   Brandon Shumin
+  Bradly Sanders
   queue.c
    - function definitions and stuff
 
@@ -59,7 +60,9 @@ void queue_insert(qData *qptr, qData d){
 }
 
 /*WIP - find next item in list but dont remove it*/
-qData * queue_peek(qData qPtr){}
+qData * queue_peek(qData qPtr){
+
+}
 /*
   removes the first node and sets the qData pointer to the
   value removed
@@ -123,7 +126,9 @@ int queue_size(qData *qPtr){
   TODO
   return nonzero if full
 */
-int queue_full(qData *qPtr){}
+int queue_full(qData *qPtr){
+
+}
 
 /*
   frees each nodes data
