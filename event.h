@@ -28,4 +28,4 @@ void event_schedule(event_t *ev);
 
 /* remove the next event from the priority and return
    it to the program for execution */
-event_t *event_cause(void);
+event_t *event_cause(void);s

@@ -25,7 +25,7 @@
 
 qData * queue_init(int size){
 
-  queue *newQ = size * (queue *)malloc(sizeof(queue));
+  queue *newQ = (queue *)malloc(size * sizeof(queue));
   newQ->head = NULL;
   newQ->tail = NULL;
   return (qData)newQ;
@@ -106,7 +106,8 @@ int queue_size(qData *qPtr){
   qNode *rov;
   int count = 0;
 
-  if(q=NULL) {
+  //check if queue is not equal
+  if(q==NULL) {
     return 0;
 
   } else {

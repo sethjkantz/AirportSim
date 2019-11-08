@@ -1,8 +1,5 @@
 /* priority.h */
 
-
-
-
 struct Heap{
   event_t *array;
   int Items;
