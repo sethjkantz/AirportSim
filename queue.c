@@ -61,7 +61,20 @@ void queue_insert(qData *qptr, qData d){
 
 /*WIP - find next item in list but dont remove it*/
 qData * queue_peek(qData qPtr){
-
+  // if not empty
+  queue *q = (queue *) qptr;
+  qNode *temp;
+  if(q != NULL){
+    // if not empty
+    if(q->head != NULL)
+      return q->head;
+  }
+  else{
+    // if couldnt find item
+    return NULL;
+  }
+      
+  
 }
 /*
   removes the first node and sets the qData pointer to the
@@ -91,7 +104,6 @@ void queue_remove(qData *qptr, qData *d){
       }
       testq("removed %p \n",temp);
       free(temp);
-
     }
   }
 }

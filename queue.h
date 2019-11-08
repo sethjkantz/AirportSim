@@ -1,7 +1,27 @@
 /* queue.h */
 typedef struct queue_s queue_t;
 
+<<<<<<< HEAD
 /* create and initialize a new queue
+=======
+// just shlappin this in here for now, prolly gonna alter
+typedef void * qData;
+typedef int q_dtype;
+
+typedef struct node{
+  qData data;
+  struct node *next;
+  struct node *prev;
+} qNode;
+
+typedef struct list{
+  qNode *head;
+  qNode *tail;
+  int size;
+} queue;
+
+/* create and initialize a new queue 
+>>>>>>> 1841b6f5b6d8c74e5705b1498b4c6a517e4acf8f
    must be able to hold at least size items
    return pointer to the new queue, NULL if error */
 queue_t *queue_init(int size);
