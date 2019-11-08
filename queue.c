@@ -25,7 +25,7 @@
 
 qData * queue_init(int size){
 
-  queue *newQ = (queue *)malloc(size * sizeof(queue));
+  queue_t *newQ = (queue_t *)malloc(size * sizeof(queue_t));
   newQ->head = NULL;
   newQ->tail = NULL;
   return (qData)newQ;
@@ -35,7 +35,7 @@ qData * queue_init(int size){
   Adds qData d to a new node at the tail of the queue
 */
 void queue_insert(qData *qptr, qData d){
-  queue *q = (queue *) qptr;
+  queue_t *q = (queue_t *) qptr;
   qNode *new = (qNode *)malloc(sizeof(qNode *));
   qNode *temp;
   if(q !=NULL && new != NULL){
@@ -62,7 +62,7 @@ void queue_insert(qData *qptr, qData d){
 /*WIP - find next item in list but dont remove it*/
 qData * queue_peek(qData qPtr){
   // if not empty
-  queue *q = (queue *) qptr;
+  queue_t *q = (queue *) qptr;
   qNode *temp;
   if(q != NULL){
     // if not empty
@@ -76,13 +76,14 @@ qData * queue_peek(qData qPtr){
       
   
 }
+
 /*
   removes the first node and sets the qData pointer to the
   value removed
 */
 
 void queue_remove(qData *qptr, qData *d){
-  queue *q = (queue *) qptr;
+  queue_t *q = (queue *) qptr;
   qNode *temp;
   if(q != NULL){
 
@@ -114,7 +115,7 @@ void queue_remove(qData *qptr, qData *d){
   returns size of Q
 */
 int queue_size(qData *qPtr){
-  queue *q = (queue *) *qptr;
+  queue_t *q = (queue *) *qptr;
   qNode *rov;
   int count = 0;
 
@@ -155,7 +156,7 @@ int queue_full(qData *qPtr){
   frees queue
 */
 void queue_finalize(qData **qptr){
-  queue *q = (queue *) *qptr;
+  queue_t *q = (queue *) *qptr;
   qNode *rov, *prev;
   if(q!=NULL){
     rov = q->head;
@@ -172,8 +173,8 @@ void queue_finalize(qData **qptr){
 
 void q_print(qData *qptr){
   if(qptr != NULL){
-    testq("head: %p \n",((queue *)qptr)->head);
-    testq("tail: %p \n",((queue *)qptr)->tail);
+    testq("head: %p \n",((queue_t *)qptr)->head);
+    testq("tail: %p \n",((queue_t *)qptr)->tail);
     testq("\n");
   }else{
    testq("no queue to print \n");
