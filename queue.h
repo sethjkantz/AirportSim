@@ -5,7 +5,7 @@ typedef void * vP;
 typedef int q_dtype;
 
 typedef struct node{
-  qData data;
+  vP data;
   struct node *next;
   struct node *prev;
 } qNode;

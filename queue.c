@@ -7,9 +7,9 @@
    - function definitions and stuff
 
   TODO:
-  - add peek, size, and full functions
-  - change #define (in .h? ) data types so
-    functions with new setup
+  - test peek, size, and full functions
+  - test functions with new typedefs
+  - update queue dType
  */
 
 #ifndef Q_C
@@ -33,6 +33,8 @@ vP * queue_init(int size){
 
 /*
   Adds qData d to a new node at the tail of the queue
+  INPUT: vP to queue_t, vP to data
+  OUTPUT: void
 */
 void queue_insert(vP *qptr, vP d){
   queue_t *q = (queue_t *) qptr;
@@ -59,7 +61,11 @@ void queue_insert(vP *qptr, vP d){
   }
 }
 
-/*WIP - find next item in list but dont remove it*/
+/*
+  INPUT: - void pointer to queue_t
+  OUTPUT:  vP to node
+  - find next item in list but dont remove it
+*/
 vP * queue_peek(vP qPtr){
   // if not empty
   queue_t *q = (queue *) qptr;
@@ -80,6 +86,7 @@ vP * queue_peek(vP qPtr){
 /*
   removes the first node and sets the qData pointer to the
   value removed
+  INPUT: vP to queue_t, vp *d that will be set to removed data
 */
 
 void queue_remove(vP *qptr, vP *d){
@@ -110,9 +117,10 @@ void queue_remove(vP *qptr, vP *d){
 }
 
 /*
-  TODO
-  check that this
-  returns size of Q
+  returns size of queue
+  INPUT:     vP to queue_t
+  OUTPUT:    size as int
+  
 */
 int queue_size(vP *qPtr){
   queue_t *q = (queue_t *) *qptr;
@@ -134,7 +142,9 @@ int queue_size(vP *qPtr){
 }
 
 /*
-  takes queue, returns 0 if good, 1 if full
+  - Checks to see if queue is full
+  INPUT:     vP * to queue_t
+  OUTPUT:    returns 0 if space, 1 if full
 */
 int queue_full(vP *qPtr){
   int  qSize = queue_size(qPtr);
@@ -151,6 +161,7 @@ int queue_full(vP *qPtr){
   frees each nodes data
   frees said node
   frees queue
+  INPUT: vP ** to queue_t
 */
 void queue_finalize(vP **qptr){
   queue_t *q = (queue_t *) *qptr;
