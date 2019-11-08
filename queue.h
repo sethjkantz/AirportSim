@@ -14,7 +14,7 @@ typedef struct node{
 typedef struct list{
   qNode *head;
   qNode *tail;
-  int size;
+  int max;
 } queue;
 
 /* create and initialize a new queue

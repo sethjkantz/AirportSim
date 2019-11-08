@@ -136,11 +136,17 @@ int queue_size(qData *qPtr){
 }
 
 /*
-  TODO
-  return nonzero if full
+  takes queue, returns 0 if good, 1 if full
 */
 int queue_full(qData *qPtr){
-
+  int  qSize = queue_size(qPtr);
+  int m = 0;
+  if(qPtr != NULL)
+    m = qPtr->max;
+  if(qSize > max)
+    return 0;
+  else
+    return 1;
 }
 
 /*
