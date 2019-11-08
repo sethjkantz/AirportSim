@@ -23,18 +23,18 @@
   initializes and returns a pointer to a new queue
 */
 
-qData * queue_init(int size){
+vP * queue_init(int size){
 
   queue_t *newQ = (queue_t *)malloc(size * sizeof(queue_t));
   newQ->head = NULL;
   newQ->tail = NULL;
-  return (qData)newQ;
+  return (vP)newQ;
 }
 
 /*
   Adds qData d to a new node at the tail of the queue
 */
-void queue_insert(qData *qptr, qData d){
+void queue_insert(vP *qptr, vP d){
   queue_t *q = (queue_t *) qptr;
   qNode *new = (qNode *)malloc(sizeof(qNode *));
   qNode *temp;
@@ -60,7 +60,7 @@ void queue_insert(qData *qptr, qData d){
 }
 
 /*WIP - find next item in list but dont remove it*/
-qData * queue_peek(qData qPtr){
+vP * queue_peek(vP qPtr){
   // if not empty
   queue_t *q = (queue *) qptr;
   qNode *temp;
@@ -82,7 +82,7 @@ qData * queue_peek(qData qPtr){
   value removed
 */
 
-void queue_remove(qData *qptr, qData *d){
+void queue_remove(vP *qptr, vP *d){
   queue_t *q = (queue *) qptr;
   qNode *temp;
   if(q != NULL){
@@ -114,23 +114,20 @@ void queue_remove(qData *qptr, qData *d){
   check that this
   returns size of Q
 */
-int queue_size(qData *qPtr){
-  queue_t *q = (queue *) *qptr;
+int queue_size(vP *qPtr){
+  queue_t *q = (queue_t *) *qptr;
   qNode *rov;
   int count = 0;
 
   //check if queue is not equal
   if(q==NULL) {
     return 0;
-
   } else {
     rov = q->head;
-
     while(rov != NULL){
       count++;
       rov = rov->next;
     }
-
     return count;
   }
 
@@ -139,7 +136,7 @@ int queue_size(qData *qPtr){
 /*
   takes queue, returns 0 if good, 1 if full
 */
-int queue_full(qData *qPtr){
+int queue_full(vP *qPtr){
   int  qSize = queue_size(qPtr);
   int m = 0;
   if(qPtr != NULL)
@@ -155,8 +152,8 @@ int queue_full(qData *qPtr){
   frees said node
   frees queue
 */
-void queue_finalize(qData **qptr){
-  queue_t *q = (queue *) *qptr;
+void queue_finalize(vP **qptr){
+  queue_t *q = (queue_t *) *qptr;
   qNode *rov, *prev;
   if(q!=NULL){
     rov = q->head;
@@ -171,7 +168,7 @@ void queue_finalize(qData **qptr){
   }
 }
 
-void q_print(qData *qptr){
+void q_print(vP *qptr){
   if(qptr != NULL){
     testq("head: %p \n",((queue_t *)qptr)->head);
     testq("tail: %p \n",((queue_t *)qptr)->tail);

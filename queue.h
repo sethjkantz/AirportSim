@@ -1,7 +1,7 @@
 /* queue.h */
 
 // just shlappin this in here for now, prolly gonna alter
-typedef void * qData;
+typedef void * vP;
 typedef int q_dtype;
 
 typedef struct node{
