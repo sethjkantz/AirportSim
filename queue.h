@@ -19,19 +19,19 @@ typedef struct queue_s{
 /* create and initialize a new queue
    must be able to hold at least size items
    return pointer to the new queue, NULL if error */
-queue_t *queue_init(int size);
+vP * queue_init(void);
 
 /* insert an item into the queue
    return 0 if successful, -1 otherwise */
-int queue_insert(queue_t *q, passenger_t *c);
+void queue_insert(vP *qptr, vP d);
 
 /* return the next item in the queue but do not remove it
    return NULL if the queue is empty or an error */
-passenger_t *queue_peek(queue_t *q);
+vP * queue_peek(vP qPtr);
 
 /* remove the next item from the queue
    and return it, return NULL if there is an error */
-passenger_t *queue_remove(queue_t *q);
+void queue_remove(vP *qptr, vP *d);
 
 /* return the number of items in the queue
    You can see if queue is empty with this */
@@ -39,8 +39,11 @@ int queue_size(queue_t *q);
 
 /* return nono-zero if the queue is full
    This may be trivial using a linked implementation */
-int queue_full(queue_t *q);
+int queue_full(vP *qPtr);
 
 /* free all resourced used by the queue then free
    the queue itself */
-void queue_finalize(queue_t *q);
+void queue_finalize(vP **qptr);
+
+/* FIXME prints out the queue */
+void q_print(vP *qptr);

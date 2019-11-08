@@ -25,7 +25,7 @@
   OUTPUT:  vP to queue_t
 */
 
-vP * queue_init(int size){
+vP * queue_init(void){
 
   queue_t *newQ = (queue_t *)malloc(sizeof(queue_t));
   newQ->head = NULL;
@@ -82,8 +82,6 @@ vP * queue_peek(vP qPtr){
     // if couldnt find item
     return NULL;
   }
-      
-  
 }
 
 /*
@@ -123,7 +121,7 @@ void queue_remove(vP *qptr, vP *d){
   returns size of queue
   INPUT:     vP to queue_t
   OUTPUT:    size as int
-  
+
 */
 int queue_size(vP *qPtr){
   queue_t *q = (queue_t *) *qptr;
@@ -147,17 +145,10 @@ int queue_size(vP *qPtr){
 /*
   - Checks to see if queue is full
   INPUT:     vP * to queue_t
-  OUTPUT:    returns 0 if space, 1 if full
+  OUTPUT:    returns 0 always since linked list
 */
 int queue_full(vP *qPtr){
-  int  qSize = queue_size(qPtr);
-  int m = 0;
-  if(qPtr != NULL)
-    m = qPtr->max;
-  if(qSize > max)
-    return 0;
-  else
-    return 1;
+  return 0;
 }
 
 /*
