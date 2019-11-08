@@ -15,7 +15,7 @@ int main(void){
   start_ev = event_create();
 
   /* schedule EV_ARRIVE event at t=0 and put in event queue */
-  start_ev.event_time = 0.0;
+  start_ev->event_time = 0.0;
   event_schedule(start_ev);
 
   /* run main loop */

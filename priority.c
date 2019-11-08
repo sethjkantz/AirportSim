@@ -2,7 +2,7 @@
 /* also called the event queue*/
 
 /* Arr[(i-1)/2]	Returns the parent node     */
-/* Arr[(2*i)+1]	Returns the left child node */
+/* Arr[(2*i)+1]	Returns the left child node   */
 /* Arr[(2*i)+2]	Returns the right child node*/
 
 /*
@@ -107,8 +107,8 @@
 //  }
 
 priority_t * min_heapify (priority_t *Arr, int i, int n) {
-  int left  = 2*i;
-  int right = 2*i+1;
+  int left  = 2*i+1;
+  int right = 2*i+2;
   int smallest, temp;
 
   if(left <= n and Arr[left] < Arr[i] )
@@ -120,10 +120,10 @@ priority_t * min_heapify (priority_t *Arr, int i, int n) {
   }
   if(smallest != i) {
       //swap Arr[i] and Arr[smallest]
-      temp = Arr[i];
-      Arr[i] = Arr[largest];
-      Arr[largest] = temp;
-      min_heapify (Arr, smallest,n);
+      temp = Arr[smallest];
+      Arr[smallest] = Arr[i];
+      Arr[i] = temp;
+      min_heapify (Arr,smallest,n);
     }
   return Arr;
 }
