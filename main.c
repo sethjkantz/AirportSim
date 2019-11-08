@@ -6,7 +6,9 @@
 
  initialize queues
  */
-// FIXME added main function, not sure if correct
+
+#include"defs.h"
+
 int main(void){
   /* malloc new EV_ARRIVE event and passenger */
   event_t *start_ev;

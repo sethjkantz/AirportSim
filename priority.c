@@ -21,7 +21,7 @@
 
     heap->Items = 0;
     heap->MAXCAPACITY = size;
-    heap-array = (int *)malloc(MAXCAPACITY*sizeof(int));
+    heap->array = (event_t *)malloc(size*sizeof(int));
 
     if(heap->array==NULL){
       printf("\nMemory Allocation Error in Array Malloc\n");
@@ -77,39 +77,40 @@
     return 0;
   }
 
-/*
-  TODO
-  code from online to max heapify, check if correct
-*/
-priority_t * max_heapify(priority_t *Arr, int i, int n) {
-    int left = 2*i;                //left child
-    int right = 2*i + 1;           //right child
-    int largest;
-    int temp;
-
-    if(left<= n & Arr[left] > Arr[i] )
-          largest = left;
-    else
-         largest = i;
-    if(right <= n and Arr[right] > Arr[largest] )
-        largest = right;
-    if(largest != i )
-    {
-        // swap Arr[i] and Arr[largest]
-        temp = Arr[i];
-        Arr[i] = Arr[largest];
-        Arr[largest] = temp;
-
-        Arr = max_heapify(Arr, largest,n);
-    }
-
-    return Arr;
- }
+// /*
+//   TODO
+//   code from online to max heapify, check if correct
+// */
+// priority_t * max_heapify(priority_t *Arr, int i, int n) {
+//     int left = 2*i;                //left child
+//     int right = 2*i + 1;           //right child
+//     int largest;
+//     int temp;
+//
+//     if(left<= n & Arr[left] > Arr[i] )
+//           largest = left;
+//     else
+//          largest = i;
+//     if(right <= n and Arr[right] > Arr[largest] )
+//         largest = right;
+//     if(largest != i )
+//     {
+//         // swap Arr[i] and Arr[largest]
+//         temp = Arr[i];
+//         Arr[i] = Arr[largest];
+//         Arr[largest] = temp;
+//
+//         Arr = max_heapify(Arr, largest,n);
+//     }
+//
+//     return Arr;
+//  }
 
 priority_t * min_heapify (priority_t *Arr, int i, int n) {
   int left  = 2*i;
   int right = 2*i+1;
   int smallest, temp;
+
   if(left <= n and Arr[left] < Arr[i] )
        smallest = left;
   else

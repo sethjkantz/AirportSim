@@ -7,6 +7,8 @@ struct event_s
    double event_time;     /* sim time when event occurs */
    passenger_t *passenger;/* passenger related to this event */
 };
+/* returns the time for an event FIXME possibly unneccessary*/
+double event_time(event_t *ev);
 
 /* initializes events, creates a priority queue */
 void event_init(void);

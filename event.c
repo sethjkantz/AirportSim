@@ -1,5 +1,6 @@
 /* events and event queue (PQ) */
 //calls priority to create an event PQ
+
 //event_time takes in event type and returns the time
 double event_time(event_t *ev) {
   return ev->time;

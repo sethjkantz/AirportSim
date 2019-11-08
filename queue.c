@@ -24,7 +24,6 @@
   INPUT: size of queue to be made (as an int)
   OUTPUT:  vP to queue_t
 */
-
 vP * queue_init(void){
 
   queue_t *newQ = (queue_t *)malloc(sizeof(queue_t));
@@ -89,7 +88,6 @@ vP * queue_peek(vP qPtr){
   value removed
   INPUT: vP to queue_t, vp *d that will be set to removed data
 */
-
 void queue_remove(vP *qptr, vP *d){
   queue_t *q = (queue *) qptr;
   qNode *temp;
