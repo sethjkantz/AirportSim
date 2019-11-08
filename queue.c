@@ -21,13 +21,16 @@
 
 /*
   initializes and returns a pointer to a new queue
+  INPUT: size of queue to be made (as an int)
+  OUTPUT:  vP to queue_t
 */
 
 vP * queue_init(int size){
 
-  queue_t *newQ = (queue_t *)malloc(size * sizeof(queue_t));
+  queue_t *newQ = (queue_t *)malloc(sizeof(queue_t));
   newQ->head = NULL;
   newQ->tail = NULL;
+  newQ->max = size;
   return (vP)newQ;
 }
 
