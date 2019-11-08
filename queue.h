@@ -1,5 +1,4 @@
 /* queue.h */
-typedef struct queue_s queue_t;
 
 // just shlappin this in here for now, prolly gonna alter
 typedef void * qData;
@@ -11,11 +10,11 @@ typedef struct node{
   struct node *prev;
 } qNode;
 
-typedef struct list{
+typedef struct queue_s{
   qNode *head;
   qNode *tail;
   int max;
-} queue;
+} queue_t;
 
 /* create and initialize a new queue
    must be able to hold at least size items
