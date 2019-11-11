@@ -12,7 +12,7 @@
   can be used as an array
 */
   priority_t *priority_init(int size) {
-    Heap *heap = (Heap *)malloc(sizeof(Heap));
+    priority_t *heap = (priority_t *)malloc(sizeof(priority_t));
 
     if(heap==NULL){
       printf("\nMemory Allocation Error in Structure Malloc.\n");
@@ -59,7 +59,7 @@
     event_t Event;
 
     if(priority_empty(heap)!=0){
-      printf("\nEmpty Heap.\n");
+      printf("\nEmpty priority_t.\n");
     }
 
     Event = heap->array[0];
@@ -71,7 +71,7 @@
 
   int priority_empty(priority_t *heap){
     if(heap->items == 0){
-      printf("Heap is Empty");
+      printf("priority_t is Empty");
       return -1;
     }
     return 0;
