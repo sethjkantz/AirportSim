@@ -21,7 +21,7 @@
 
     heap->items = 0;
     heap->MAXCAPACITY = size;
-    heap->array = (event_t *)malloc(size*sizeof(event_t));
+    heap->array = (event_t **)malloc(size*sizeof(event_t));
     if(heap->array==NULL){
       fprintf(stdout,"\nMemory Allocation Error in Array Malloc\n");
       return NULL;
@@ -97,13 +97,13 @@ priority_t * min_heapify (priority_t *Arr, int i, int n) {
   int left  = 2*i+1;
   int right = 2*i+2;
   int smallest;
-  priority_t *temp;
+  priority_t temp;
 
-  if(left <= n &&  Arr[left] < Arr[i] )
+  if((left <= n) &&  (Arr[left]->time < Arr[i]->time) )
        smallest = left;
   else
       smallest = i;
-  if(right <= n && Arr[right] < Arr[smallest]){
+  if((right <= n) && (Arr[right]->time < Arr[smallest]->time)){
     smallest = right;
   }
   if(smallest != i) {
