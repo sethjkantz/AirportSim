@@ -1,7 +1,7 @@
 /* priority.h */
 
 typedef struct Heap_s{
-  event_t *array;
+  event_t **array;
   int items;
   int MAXCAPACITY;
 }priority_t;
