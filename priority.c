@@ -99,6 +99,11 @@ priority_t * min_heapify (priority_t *heap, int i, int n) {
   int smallest;
   event_t temp;
 
+  // double check exists
+  if(heap == NULL)
+    return NULL;
+
+  
   if((left <= n) &&  (heap->array[left]->time < heap->array[i]->time) )
        smallest = left;
   else
