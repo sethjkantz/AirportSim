@@ -27,7 +27,8 @@
       fprintf(stdout,"\nMemory Allocation Error in Array Malloc\n");
       return NULL;
     }
-    return *heap;
+
+    return heap;
 }
 
 /*
@@ -35,7 +36,7 @@
   insert an item into the priority queue
      return 0 if successful, -1 otherwise
 */
-  int priority_insert(priority_t *heap, event_t *ev){
+  int priority_insert(priority_t *heap, event_t **ev){
     int index = heap->items;
     int success = 0;
 
@@ -56,7 +57,7 @@
 }
 
   event_t *priority_remove(priority_t *heap){
-    event_t Event;
+    event_t * Event;
 
     if(priority_empty(heap)!=0){
       fprintf(stdout,"\nEmpty priority_t.\n");
@@ -87,7 +88,7 @@
   }
 
   void priority_finalize(priority_t *heap){
-    return 0;
+
   }
 
 
@@ -96,13 +97,14 @@
 priority_t * min_heapify (priority_t *Arr, int i, int n) {
   int left  = 2*i+1;
   int right = 2*i+2;
-  int smallest, temp;
+  int smallest;
+  priority_t *temp;
 
-  if(left <= n and Arr[left] < Arr[i] )
+  if(left <= n &&  Arr[left] < Arr[i] )
        smallest = left;
   else
       smallest = i;
-  if(right <= n and Arr[right] < Arr[smallest]){
+  if(right <= n && Arr[right] < Arr[smallest]){
     smallest = right;
   }
   if(smallest != i) {
