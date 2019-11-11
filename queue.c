@@ -24,7 +24,7 @@
   INPUT: size of queue to be made (as an int)
   OUTPUT:  vP to queue_t
 */
-vP * queue_init(void){
+queue_t * queue_init(void){
 
   queue_t *newQ = (queue_t *)malloc(sizeof(queue_t));
   newQ->head = NULL;
@@ -38,7 +38,7 @@ vP * queue_init(void){
   INPUT: vP to queue_t, vP to data
   OUTPUT: void
 */
-void queue_insert(vP *qptr, vP d){
+void queue_insert(vP *qptr, int d){
   queue_t *q = (queue_t *) qptr;
   qNode *new = (qNode *)malloc(sizeof(qNode *));
   qNode *temp;

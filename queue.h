@@ -1,11 +1,11 @@
 /* queue.h */
-
+// FIXME change all return types to non-void types
 // just shlappin this in here for now, prolly gonna alter
-typedef void * vP;
+typedef void * vP; //FIXME get rid of this bad boy and replace everywhere
 typedef int q_dtype;
 
 typedef struct node{
-  vP data;
+  int data;
   struct node *next;
   struct node *prev;
 } qNode;
@@ -19,11 +19,11 @@ typedef struct queue_s{
 /* create and initialize a new queue
    must be able to hold at least size items
    return pointer to the new queue, NULL if error */
-vP * queue_init(void);
+queue_t * queue_init(void);
 
 /* insert an item into the queue
    return 0 if successful, -1 otherwise */
-void queue_insert(vP *qptr, vP d);
+void queue_insert(vP *qptr, int d);
 
 /* return the next item in the queue but do not remove it
    return NULL if the queue is empty or an error */
