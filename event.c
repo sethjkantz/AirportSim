@@ -8,7 +8,7 @@
 
 /* initializes events, creates a priority queue */
 void event_init(void){
-
+  
 }
 
 /* frees up all event space, including space in the priority
@@ -29,7 +29,7 @@ void event_destroy(event_t *ev){
 }
 
 void event_schedule(event_t *ev){
-  
+
 }
 
 event_t *event_cause(void){
