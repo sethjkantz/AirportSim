@@ -2,7 +2,7 @@
    - Header file for event.c
 
  */
-typedef struct event_s event_t;
+
 struct event_s
 {
    int event_type;        /* type of event – see below */
@@ -10,6 +10,7 @@ struct event_s
    double event_time;     /* sim time when event occurs */
    passenger_t *passenger;/* passenger related to this event */
 };
+typedef struct event_s event_t;
 
 // /* returns the time for an event FIXME possibly unneccessary*/
 // double event_time(event_t *ev);
