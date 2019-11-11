@@ -22,7 +22,6 @@
     heap->items = 0;
     heap->MAXCAPACITY = size;
     heap->array = (event_t *)malloc(size*sizeof(event_t));
-
     if(heap->array==NULL){
       fprintf(stdout,"\nMemory Allocation Error in Array Malloc\n");
       return NULL;
