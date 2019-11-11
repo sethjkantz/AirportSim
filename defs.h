@@ -5,9 +5,9 @@
 #include<math.h>
 #include<string.h>
 
+#include"sim.h"
 #include"queue.h"
 #include"event.h"
 #include"time.h"
-#include"sim.h"
 #include"priority.h"
 #include"randsim.h"

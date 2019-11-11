@@ -16,18 +16,18 @@
 
     if(heap==NULL){
       printf("\nMemory Allocation Error in Structure Malloc.\n");
-      return;
+      return NULL;
     }
 
-    heap->Items = 0;
+    heap->items = 0;
     heap->MAXCAPACITY = size;
     heap->array = (event_t *)malloc(size*sizeof(event_t));
 
     if(heap->array==NULL){
       printf("\nMemory Allocation Error in Array Malloc\n");
-      return;
+      return NULL;
     }
-    return heap;
+    return *heap;
 }
 
 /*
@@ -36,7 +36,7 @@
      return 0 if successful, -1 otherwise
 */
   int priority_insert(priority_t *heap, event_t *ev){
-    int index = heap->Items;
+    int index = heap->items;
     int success = 0;
 
     if(priority_full(heap)!=0)
@@ -51,7 +51,7 @@
       index++;
     }
 
-    heap->Items = index;
+    heap->items = index;
     return success;
 }
 
@@ -63,14 +63,14 @@
     }
 
     Event = heap->array[0];
-    heap->array[0] = heap->array[heap->Items-1];
-    heap->Items--;
+    heap->array[0] = heap->array[heap->items-1];
+    heap->items--;
     //min_heapify(heap,x,x) FIX THIS
     return Event;
   }
 
   int priority_empty(priority_t *heap){
-    if(heap->Items == 0){
+    if(heap->items == 0){
       printf("Heap is Empty");
       return -1;
     }
@@ -78,7 +78,7 @@
   }
 
   int priority_full(priority_t *heap){
-    if(heap->Items < heap->MAXCAPACITY){
+    if(heap->items < heap->MAXCAPACITY){
        return 0;
     }
     else{

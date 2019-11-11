@@ -1,12 +1,12 @@
 /* priority.h */
 
-struct Heap{
+typedef struct Heap_s{
   event_t *array;
-  int Items;
+  int items;
   int MAXCAPACITY;
-};
+}Heap;
 
-typedef struct priority_s priority_t;
+typedef struct Heap_s priority_t;
 
 /* create and initialize a new priority queue
    must be able to hold at least size items
