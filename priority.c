@@ -99,11 +99,11 @@ priority_t * min_heapify (priority_t *Arr, int i, int n) {
   int smallest;
   event_t temp;
 
-  if((left <= n) &&  (Arr[left]->time < Arr[i]->time) )
+  if((left <= n) &&  (Arr->array[left]->time < Arr->array[i]->time) )
        smallest = left;
   else
       smallest = i;
-  if((right <= n) && (Arr[right]->time < Arr[smallest]->time)){
+  if((right <= n) && (Arr->array[right]->time < Arr->array[smallest]->time)){
     smallest = right;
   }
   if(smallest != i) {
