@@ -1,5 +1,5 @@
 /* File to include all of the header files and base library files */
-#include<stdio.lib>
+#include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
 #include<math.h>
