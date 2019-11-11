@@ -1,10 +1,10 @@
 /* events and event queue (PQ) */
 //calls priority to create an event PQ
 
-//event_time takes in event type and returns the time
-double event_time(event_t *ev) {
-  return ev->time;
-}
+// //event_time takes in event type and returns the time
+// double event_time(event_t *ev){
+//   return ev->time;
+// }
 
 /* initializes events, creates a priority queue */
 void event_init(void){
@@ -18,7 +18,7 @@ void event_fini(event_t *ev){
 }
 
 event_t *event_create(void){
-  event_t *new_ev;
+  event_t *new_ev = (event_t *)malloc(sizeof(event_t));
   new_ev->passenger = (passenger_t *)malloc(sizeof(passenger_t));
   new_ev->queue = (queue_t *)malloc(sizeof(queue_t));
   return new_ev;
