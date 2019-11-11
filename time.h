@@ -16,14 +16,14 @@ void time_set(double t);
    time each passenger takes to make each of these steps
    these times are set into the corresponding event
    before it is scheduled. */
-double time_arrive();
+double time_arrive(void);
 
-double time_airline();
+double time_airline(void);
 
-double time_id();
+double time_id(void);
 
-double time_scan();
+double time_scan(void);
 
-double time_train();
+double time_train(void);
 
-double time_gate();
+double time_gate(void);

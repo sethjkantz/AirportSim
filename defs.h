@@ -1,4 +1,4 @@
-/* File to include all of the header files */
+/* File to include all of the header files and base library files */
 #include<stdio.lib>
 #include<stdlib.h>
 #include<time.h>

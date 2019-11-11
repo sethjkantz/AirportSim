@@ -18,26 +18,26 @@ void time_set(double t){
   sim_time = t;
 }
 
-double time_arrive(){
+double time_arrive(void){
+  
+}
+
+double time_airline(void){
 
 }
 
-double time_airline(){
+double time_id(void){
 
 }
 
-double time_id(){
+double time_scan(void){
 
 }
 
-double time_scan(){
+double time_train(void){
 
 }
 
-double time_train(){
-
-}
-
-double time_gate(){
+double time_gate(void){
 
 }
