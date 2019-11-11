@@ -4,9 +4,8 @@ typedef struct Heap_s{
   event_t *array;
   int items;
   int MAXCAPACITY;
-}Heap;
+}priority_t;
 
-typedef struct Heap_s priority_t;
 
 /* create and initialize a new priority queue
    must be able to hold at least size items
