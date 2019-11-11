@@ -7,7 +7,7 @@ void time_init(void){
 }
 
 void time_fini(void){
-
+  //not implemented in this stage
 }
 
 double time_get(void){
@@ -18,57 +18,32 @@ void time_set(double t){
   sim_time = t;
 }
 
-<<<<<<< HEAD
-double time_arrive(void){
-  
-}
-
-double time_airline(void){
-
-}
-
-double time_id(void){
-
-}
-
-double time_scan(void){
-
-}
-
-double time_train(void){
-
-}
-
-double time_gate(void){
-
-=======
 // returns arrival time
 double time_arrive(){
-
+  return interarrival_time();
 }
 
 // blank
 double time_airline(){
-  return 0;
+  return enter_airline_queue_time();
 }
 
 // blank
 double time_id(){
-  return 0;
+  return enter_airline_queue_time();
 }
 
 // blank
 double time_scan(){
-  return 0;
+  return enter_airline_queue_time();
 }
 
 // blank
 double time_train(){
-  return 0;
+  return enter_airline_queue_time();
 }
 
 // blank
 double time_gate(){
-  return 0;
->>>>>>> 2a1ce9aab1756a3349786952fd81abbd8e2d8650
+  return enter_airline_queue_time();
 }
