@@ -35,7 +35,7 @@
   insert an item into the priority queue
      return 0 if successful, -1 otherwise
 */
-  int priority_insert(priority_t *heap, event_t **ev){
+  int priority_insert(priority_t *heap, event_t *ev){
     int index = heap->items;
     int success = 0;
 

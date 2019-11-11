@@ -14,7 +14,7 @@ priority_t *priority_init(int size);
 
 /* insert an item into the priority queue
    return 0 if successful, -1 otherwise */
-int priority_insert(priority_t *heap, event_t **ev);
+int priority_insert(priority_t *heap, event_t *ev);
 
 /* remove the highest priority item from the queue
    and return it, return NULL if there is an error */
