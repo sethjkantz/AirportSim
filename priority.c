@@ -21,7 +21,7 @@
 
     heap->Items = 0;
     heap->MAXCAPACITY = size;
-    heap->array = (event_t *)malloc(size*sizeof(int));
+    heap->array = (event_t *)malloc(size*sizeof(event_t));
 
     if(heap->array==NULL){
       printf("\nMemory Allocation Error in Array Malloc\n");
@@ -77,37 +77,22 @@
     return 0;
   }
 
-// /*
-//   code from online to max heapify, not needed pretty sure
-// */
-// priority_t * max_heapify(priority_t *Arr, int i, int n) {
-//     int left = 2*i;                //left child
-//     int right = 2*i + 1;           //right child
-//     int largest;
-//     int temp;
-//
-//     if(left<= n & Arr[left] > Arr[i] )
-//           largest = left;
-//     else
-//          largest = i;
-//     if(right <= n and Arr[right] > Arr[largest] )
-//         largest = right;
-//     if(largest != i )
-//     {
-//         // swap Arr[i] and Arr[largest]
-//         temp = Arr[i];
-//         Arr[i] = Arr[largest];
-//         Arr[largest] = temp;
-//
-//         Arr = max_heapify(Arr, largest,n);
-//     }
-//
-//     return Arr;
-//  }
+  int priority_full(priority_t *heap){
+    if(heap->Items < heap->MAXCAPACITY){
+       return 0;
+    }
+    else{
+      return 1;
+    }
+  }
 
-/*
-   code from online to min heapify
-*/
+  void priority_finalize(priority_t *heap){
+    return 0;
+  }
+
+
+
+
 priority_t * min_heapify (priority_t *Arr, int i, int n) {
   int left  = 2*i+1;
   int right = 2*i+2;
