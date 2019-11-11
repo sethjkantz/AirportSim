@@ -2,7 +2,7 @@
 /* also called the event queue*/
 
 /* Arr[(i-1)/2]	Returns the parent node     */
-/* Arr[(2*i)+1]	Returns the left child node   */
+/* Arr[(2*i)+1]	Returns the left child node */
 /* Arr[(2*i)+2]	Returns the right child node*/
 
 /*
@@ -78,8 +78,7 @@
   }
 
 // /*
-//   TODO
-//   code from online to max heapify, check if correct
+//   code from online to max heapify, not needed pretty sure
 // */
 // priority_t * max_heapify(priority_t *Arr, int i, int n) {
 //     int left = 2*i;                //left child
@@ -106,6 +105,9 @@
 //     return Arr;
 //  }
 
+/*
+   code from online to min heapify
+*/
 priority_t * min_heapify (priority_t *Arr, int i, int n) {
   int left  = 2*i+1;
   int right = 2*i+2;

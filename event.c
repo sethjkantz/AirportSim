@@ -19,8 +19,8 @@ void event_fini(event_t *ev){
 
 event_t *event_create(void){
   event_t *new_ev;
-  new_ev.passenger = (passenger_t *)malloc(sizeof(passenger_t));
-  new_ev.queue = (queue_t *)malloc(sizeof(queue_t));
+  new_ev->passenger = (passenger_t *)malloc(sizeof(passenger_t));
+  new_ev->queue = (queue_t *)malloc(sizeof(queue_t));
   return new_ev;
 }
 
