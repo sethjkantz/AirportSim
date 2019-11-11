@@ -35,4 +35,4 @@ void priority_finalize(priority_t *heap);
 // priority_t * max_heapify(priority_t *Arr, int i, int n);
 
 /* heapify the heap with main at top */
-priority_t * min_heapify (priority_t *Arr, int i, int n);
+priority_t * min_heapify (priority_t *heap, int i, int n);
