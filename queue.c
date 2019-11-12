@@ -106,9 +106,7 @@ void queue_remove(queue_t *qPtr, int d){
 	q->head->prev = NULL;
       }
 
-      if(d != NULL){ //FIXME int comp with NULL
-	       d = temp->data;
-      }
+	    d = temp->data;
       //testq("removed %p \n",temp);
       free(temp);
     }

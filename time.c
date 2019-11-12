@@ -20,30 +20,33 @@ void time_set(double t){
 
 // returns arrival time
 double time_arrive(){
-  return interarrival_time();
+  double temp = interarrival_time();
+  return temp;
 }
 
 // blank
 double time_airline(){
-  return enter_airline_queue_time();
+  double temp = enter_airline_queue_time();
+  return temp;
 }
 
 // blank
 double time_id(){
-  return enter_airline_queue_time();
+  double temp = 0;
+return temp;
 }
 
 // blank
 double time_scan(){
-  return enter_airline_queue_time();
+  return 0;
 }
 
 // blank
 double time_train(){
-  return enter_airline_queue_time();
+  return 0;
 }
 
 // blank
 double time_gate(){
-  return enter_airline_queue_time();
+  return 0;
 }
