@@ -4,7 +4,10 @@
 /**************************************************************************/
 
 /* These functions are for use in the simulator */
-
+#ifndef randsim_h
+#define randsim_h 1
 double interarrival_time(void);
 
 double enter_airline_queue_time(void);
+
+#endif

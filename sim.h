@@ -1,5 +1,8 @@
 /* The event types are as follows: */
 
+#ifndef sim_h
+#define sim_h 1
+
 #define EV_ARRIVE   0 // this is when passenger arrives
                       // at the airport
 #define EV_AIRLINEQ 1 // this is when she selects an airline
@@ -35,3 +38,5 @@ typedef struct passenger_s
 
 #define MAX_PASS 1000000
 int num_passengers = 0;
+
+#endif

@@ -1,4 +1,6 @@
 /* time.h */
+#ifndef time_h
+#define time_h 1
 
 /* creates a double for using as the global sim time */
 void time_init(void);
@@ -27,3 +29,5 @@ double time_scan(void);
 double time_train(void);
 
 double time_gate(void);
+
+#endif

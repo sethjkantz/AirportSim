@@ -2,7 +2,8 @@
    - Header file for event.c
 
  */
-
+#ifndef event_h
+#define event_h 1
 struct event_s
 {
    int event_type;        /* type of event – see below */
@@ -36,3 +37,6 @@ void event_schedule(event_t *ev);
 /* remove the next event from the priority and return
    it to the program for execution */
 event_t *event_cause(void);
+
+
+#endif

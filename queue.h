@@ -2,6 +2,9 @@
 // FIXME change all return types to non-void types
 // just shlappin this in here for now, prolly gonna alter
 //typedef void * vP;
+
+#ifndef queue_h
+#define queue_h 1
 typedef int q_dtype;
 
 typedef struct node{
@@ -47,3 +50,5 @@ void queue_finalize(queue_t **qPtr);
 
 /* FIXME prints out the queue */
 void q_print(queue_t *qPtr);
+
+#endif

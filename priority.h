@@ -1,5 +1,8 @@
 /* priority.h */
 
+#ifndef priority_h
+#define priority_h 1
+
 typedef struct Heap_s{
   event_t **array;
   int items;
@@ -36,3 +39,6 @@ void priority_finalize(priority_t *heap);
 
 /* heapify the heap with main at top */
 priority_t * min_heapify (priority_t *heap, int i, int n);
+
+
+#endif
