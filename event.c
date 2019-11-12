@@ -33,5 +33,5 @@ void event_schedule(event_t *ev){
 }
 
 event_t *event_cause(void){
-return NULL;
+  return NULL;
 }

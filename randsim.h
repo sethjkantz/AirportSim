@@ -5,6 +5,6 @@
 
 /* These functions are for use in the simulator */
 
-double interarrival_time();
+double interarrival_time(void);
 
-double enter_airline_queue_time();
+double enter_airline_queue_time(void);

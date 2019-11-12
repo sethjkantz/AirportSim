@@ -17,9 +17,9 @@ int main(void){
   /* schedule EV_ARRIVE event at t=0 and put in event queue */
   start_ev->event_time = 0.0;
   event_schedule(start_ev);
-
+  new_ev = start_ev;
   /* run main loop */
-  while(!event_empty(eq)) //FIXME where does eq come from ?!?!
+  while(new_ev != NULL) //FIXME where does eq come from ?!?!
   {
       new_ev = event_cause();
       time_set(new_ev->event_time);

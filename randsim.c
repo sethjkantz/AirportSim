@@ -13,7 +13,7 @@
 #endif
 
 /* Uniform Distribution */
-static double randsim_uni();
+//static double randsim_uni();
 
 /* Exponential Distribution */
 static double randsim_exp(double mean);
@@ -36,7 +36,7 @@ static double randsim_exp(double mean)
 	return -mean * log(randsim_uni());
 }
 
-static static double rand_gas_full(double mean, double std)
+static double rand_gas_full(double mean, double std)
 {
 	static int iset = 0;
 	static double gset;
@@ -59,7 +59,7 @@ static static double rand_gas_full(double mean, double std)
 }
 
 /* Gaussian Distribution - prevents values outside of 2 STD DEVs */
-double randsim_gauss(mean, std)
+double randsim_gauss(double mean, double std)
 {
 	double u = -1.0;
 	while((u < 0.0) || (u > (2.0 * mean)))
@@ -73,12 +73,12 @@ double randsim_gauss(mean, std)
 
 /* Two times for Phase I of program */
 
-double interarrival_time()
+double interarrival_time(void)
 {
 	return randsim_exp(2.0);
 }
 
-double enter_airline_queue_time()
+double enter_airline_queue_time(void)
 {
 	return randsim_gauss(60, 20);
 }

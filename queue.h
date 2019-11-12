@@ -27,7 +27,7 @@ void queue_insert(queue_t *qPtr, int d);
 
 /* return the next item in the queue but do not remove it
    return NULL if the queue is empty or an error */
-queue_t * queue_peek(queue_t *qPtr);
+qNode * queue_peek(queue_t *qPtr);
 
 /* remove the next item from the queue
    and return it, return NULL if there is an error */

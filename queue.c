@@ -68,10 +68,9 @@ void queue_insert(queue_t *qPtr, int d){
   OUTPUT:  vP to node
   - find next item in list but dont remove it
 */
-queue_t * queue_peek(queue_t *qPtr){
+qNode * queue_peek(queue_t *qPtr){
   // if not empty
   queue_t *q = qPtr;
-  qNode *temp;
   if(q != NULL){
     // if not empty
     if(q->head != NULL)
@@ -81,6 +80,7 @@ queue_t * queue_peek(queue_t *qPtr){
     // if couldnt find item
     return NULL;
   }
+  return NULL;
 }
 
 /*
@@ -106,7 +106,7 @@ void queue_remove(queue_t *qPtr, int d){
 	q->head->prev = NULL;
       }
 
-      if(d != NULL){
+      if(d != NULL){ //FIXME int comp with NULL
 	       d = temp->data;
       }
       //testq("removed %p \n",temp);
@@ -157,15 +157,14 @@ int queue_full(queue_t *qPtr){
 */
 void queue_finalize(queue_t **qPtr){
   queue_t *q = *qPtr;
-  qNode *rov, *prev;
+  qNode *rov, *next;
   if(q!=NULL){
     rov = q->head;
     while(rov != NULL){
-      free(rov->data);
-      prev = rov;
-      rov = rov->next;
+      next = rov->next;
+      free(rov);
+      rov = next;
       //testq("removed %p \n",prev);
-      free(prev);
     }
     free(q);
   }
