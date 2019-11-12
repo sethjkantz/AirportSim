@@ -24,7 +24,7 @@
   INPUT: size of queue to be made (as an int)
   OUTPUT:  vP to queue_t
 */
-queue_t * queue_init(void){
+queue_t * queue_init(int size){
 
   queue_t *newQ = (queue_t *)malloc(sizeof(queue_t));
   newQ->head = NULL;
@@ -59,7 +59,7 @@ void queue_insert(queue_t *qPtr, int d){
       temp->next = new;
       q->tail = new;
     }
-    testq("added %p \n",new);
+    //testq("added %p \n",new);
   }
 }
 
@@ -109,7 +109,7 @@ void queue_remove(queue_t *qPtr, int d){
       if(d != NULL){
 	       d = temp->data;
       }
-      testq("removed %p \n",temp);
+      //testq("removed %p \n",temp);
       free(temp);
     }
   }
@@ -164,7 +164,7 @@ void queue_finalize(queue_t **qPtr){
       free(rov->data);
       prev = rov;
       rov = rov->next;
-      testq("removed %p \n",prev);
+      //testq("removed %p \n",prev);
       free(prev);
     }
     free(q);
@@ -173,11 +173,11 @@ void queue_finalize(queue_t **qPtr){
 
 void q_print(queue_t *qPtr){
   if(qPtr != NULL){
-    testq("head: %p \n",qPtr->head);
-    testq("tail: %p \n",qPtr->tail);
-    testq("\n");
+    //testq("head: %p \n",qPtr->head);
+    //testq("tail: %p \n",qPtr->tail);
+    //testq("\n");
   }else{
-   testq("no queue to print \n");
+   //testq("no queue to print \n");
   }
 }
 

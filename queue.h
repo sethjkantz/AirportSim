@@ -19,7 +19,7 @@ typedef struct queue_s{
 /* create and initialize a new queue
    must be able to hold at least size items
    return pointer to the new queue, NULL if error */
-queue_t * queue_init(void);
+queue_t * queue_init(int size);
 
 /* insert an item into the queue
    return 0 if successful, -1 otherwise */

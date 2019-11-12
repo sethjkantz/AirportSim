@@ -11,7 +11,7 @@
 
 int main(void){
   /* malloc new EV_ARRIVE event and passenger */
-  event_t *start_ev;
+  event_t *start_ev, *new_ev;
   start_ev = event_create();
 
   /* schedule EV_ARRIVE event at t=0 and put in event queue */
@@ -22,11 +22,11 @@ int main(void){
   while(!event_empty(eq)) //FIXME where does eq come from ?!?!
   {
       new_ev = event_cause();
-      time_set(new_ev.event_time);
-      switch (new_ev.event_type)
+      time_set(new_ev->event_time);
+      switch (new_ev->event_type)
       {
       case (EV_ARRIVE) :
-          new_ev.passenger.arrive_time = time_get();
+          new_ev->passenger->arrival_time = time_get();
           /* create EV_ENQUEUE event for this passenger */
           /* schedule EV_ENQUEUE event */
           if (MAX_PASS > num_passengers++)
@@ -56,7 +56,7 @@ int main(void){
       /* remaining event types */
       default :
           /* error */
-          fprintf(stderr, "Something went wrong.")
+          fprintf(stderr, "Something went wrong.");
           //return -1;
           break;
       }

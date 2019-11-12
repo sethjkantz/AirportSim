@@ -103,7 +103,7 @@ priority_t * min_heapify (priority_t *heap, int i, int n) {
   if(heap == NULL)
     return NULL;
 
-  
+
   if((left <= n) &&  (heap->array[left]->time < heap->array[i]->time) )
        smallest = left;
   else
@@ -114,9 +114,9 @@ priority_t * min_heapify (priority_t *heap, int i, int n) {
   if(smallest != i) {
       //swap Arr[i] and Arr[smallest]
       temp = heap->array[smallest];
-      heap->array[smallest] = Arr->array[i];
+      heap->array[smallest] = heap->array[i];
       heap->array[i] = temp;
-      min_heapify (Arr,smallest,n);
+      min_heapify (heap,smallest,n);
     }
   return heap;
 }
