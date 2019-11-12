@@ -15,9 +15,7 @@
 #ifndef Q_C
 #define Q_C 1
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "queue.h"
+#include "defs.h"
 
 /*
   initializes and returns a pointer to a new queue

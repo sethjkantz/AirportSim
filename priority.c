@@ -4,7 +4,7 @@
 /* Arr[(i]	Returns the parent node     */
 /* Arr[(2*i)]	Returns the left child node */
 /* Arr[(2*i)+1]	Returns the right child node*/
-
+#include "defs.h"
 /*
   TODO
   figure if this works

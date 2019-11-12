@@ -4,7 +4,7 @@
 
 /* NOTE TO PROGRAMMERS - you MUST put a function prototype in your code */
 /* for each of the functions you plan to call. */
-
+#include "defs.h"
 /* not used in this version, values must be passed in */
 #if 0
 /* double M1 = 4.5;   median of the exponential function */

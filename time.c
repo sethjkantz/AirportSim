@@ -1,3 +1,5 @@
+
+#include "defs.h"
 /* various time related functions */
 static double sim_time;
 //delta time

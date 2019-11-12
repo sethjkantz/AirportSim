@@ -5,7 +5,7 @@
 // double event_time(event_t *ev){
 //   return ev->time;
 // }
-
+#include "defs.h"
 /* initializes events, creates a priority queue */
 void event_init(void){
 

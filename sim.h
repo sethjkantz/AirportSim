@@ -17,8 +17,8 @@
                       // and heads for her gate
 #define EV_GATE     9 /* this is when she arrives at the gate */
 
-typedef struct passenger_s passenger_t;
-struct passenger_s
+
+typedef struct passenger_s
 {
    double arrival_time; /* gets to the airport */
    double airlineQ_time;
@@ -30,7 +30,8 @@ struct passenger_s
    double trainQ_time;
    double train_time;
    double gate_time;    /* gets to gate */
-};
+}passenger_t;
+
 
 #define MAX_PASS 1000000
 int num_passengers = 0;
