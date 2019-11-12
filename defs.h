@@ -1,6 +1,4 @@
 /* File to include all of the header files and base library files */
-#ifndef
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -13,5 +11,3 @@
 #include"time.h"
 #include"priority.h"
 #include"randsim.h"
-
-#endif
