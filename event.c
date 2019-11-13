@@ -83,7 +83,7 @@ void event_schedule(event_t *ev){
 /* pops top off */
 event_t *event_cause(void){
   event_t * ev = priority_remove(eq);
-  sim_time = ev->event_time +time_get();
+  time_set(ev->event_time +time_get());
 
   return ev;
 }
