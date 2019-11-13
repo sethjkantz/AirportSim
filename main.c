@@ -9,19 +9,18 @@
 
 #include"defs.h"
 
-priority_t * eq;
 
 int main(void){
   /* malloc new EV_ARRIVE event and passenger */
   event_t *start_ev, *new_ev;
   start_ev = event_create();  // this causes a mem leak - prolly not being finilized
-
+  new_ev = event_create();
   /* schedule EV_ARRIVE event at t=0 and put in event queue */
   start_ev->event_time = 0.0;
   event_schedule(start_ev);
   new_ev = start_ev;
   /* run main loop */
-  while(!priority_empty(eq)) //FIXME where does eq come from ?!?!
+  while(!priority_empty(eq))
   {
       new_ev = event_cause();
       time_set(new_ev->event_time);
@@ -65,6 +64,8 @@ int main(void){
       }
       /* free event */
   }
+  event_fini(start_ev);
+  event_fini(new_ev);
   /* Print overall stats */
   return 0;
 }
