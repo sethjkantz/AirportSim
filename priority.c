@@ -102,9 +102,14 @@
   terminates heap
 */
 void priority_finalize(priority_t *heap){
-    
-    free(heap);
+  if(heap==NULL) return;
+  
+  while(!priority_empty(heap)){
+    free(priority_remove(heap));
   }
+  
+  free(heap);
+}
 
 /* swaps vals downward to get min to top */
 priority_t * min_heapify (priority_t *heap, int i) {
