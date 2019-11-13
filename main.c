@@ -40,8 +40,13 @@ int main(void){
           new_ev = event_create(); //pass to next event
           new_ev->passenger = temp_pass;
           new_ev->event_type = 1;
+<<<<<<< HEAD
           new_ev->event_time = enter_airline_queue_time();
           fprintf(stdout, "Passenger will arrive at queue at %f\n", new_ev->event_time);
+=======
+          new_event->event_time = enter_airline_queue_time();
+          fprintf(stdout, "Passenger will arrive at queue at %f\n", new_event->event_time);
+>>>>>>> 7038d0735baf3d4e852df7246ba8ff5ff888eb7d
           event_schedule(new_ev);
 
           /* create EV_ENQUEUE event for this passenger */
@@ -50,7 +55,7 @@ int main(void){
           {
 	            // create new EV_ARRIVE event and passsenger
               // schedule EV_ARRIVE event
-              fprintf(stdout,"New arrival\n");
+              fprintf(stdout,"New arrival\n")
               new_ev = event_create();
               new_ev->event_time = interarrival_time();
               event_schedule(new_ev);
