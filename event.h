@@ -13,8 +13,6 @@ struct event_s
 };
 typedef struct event_s event_t;
 
-// /* returns the time for an event FIXME possibly unneccessary*/
-// double event_time(event_t *ev);
 
 /* initializes events, creates a priority queue */
 void event_init(void);
