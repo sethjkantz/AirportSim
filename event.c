@@ -35,5 +35,6 @@ void event_schedule(event_t *ev){
 }
 
 event_t *event_cause(void){
-  return NULL;
+  event_t * ev = priority_remove(eq);
+  return ev;
 }
