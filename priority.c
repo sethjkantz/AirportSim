@@ -1,10 +1,15 @@
-/* PQ implemented as a heap   */
-/* also called the event queue*/
+/* 
+   priority.c
 
-/* Arr[(i]	Returns the parent node     */
-/* Arr[(2*i)]	Returns the left child node */
-/* Arr[(2*i)+1]	Returns the right child node*/
+   PQ implemented as a heap   
+   also called the event queue
+
+   Arr[(i]	Returns the parent node     
+   Arr[(2*i)]	Returns the left child node 
+   Arr[(2*i)+1]	Returns the right child node*/
+
 #include "defs.h"
+
 /*
   TODO
   figure if this works
@@ -31,24 +36,21 @@
 }
 
 /*
-  WIP
   insert an item into the priority queue
      return 0 if successful, -1 otherwise
 */
   int priority_insert(priority_t *heap, event_t *ev){
     int index = heap->items;
     int success = 0;
-
-    if(priority_full(heap)!=0)
-    {
-      fprintf(stdout,"\nQueue is full!\n");
-      success = -1;
-      return success;
-    }
-    else{
+    
+    if(heap==NULL) return -1;
+    
+    if(!priority_full(heap)){
       heap->array[index] = ev;
-      //heap = min_heapify(heap,x,x) //FIX THIS
+      heap = min_heapify(heap,1);
       index++;
+    }else{
+      success = -1;
     }
 
     heap->items = index;
@@ -90,19 +92,18 @@
 
   }
 
-priority_t * min_heapify (priority_t *heap, int i, int n) {
+priority_t * min_heapify (priority_t *heap, int i) {
   int left  = 2*i;
   int right = 2*i+1;
-  int smallest;
+  int smallest, n;
   event_t *temp;
 
   // double check exists
-  if(heap == NULL)
-    return NULL;
+  if(heap == NULL) return NULL;
+  if((heap->items == 1) || (i == 0)) return heap;
 
-  if(heap->items == 1) {
-    return heap;
-  }
+  n = heap->MAXCAPACITY;
+  
 
   if((left <= n) &&  (heap->array[left]->event_time < heap->array[i]->event_time) )
       smallest = left;
@@ -116,7 +117,7 @@ priority_t * min_heapify (priority_t *heap, int i, int n) {
       temp = heap->array[smallest];
       heap->array[smallest] = heap->array[i];
       heap->array[i] = temp;
-      heap = min_heapify (heap,smallest,n);
+      heap = min_heapify (heap,smallest);
     }
   return heap;
 }
