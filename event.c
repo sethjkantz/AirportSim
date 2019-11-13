@@ -14,7 +14,13 @@ void event_init(void){
 /* frees up all event space, including space in the priority
    queue */
 void event_fini(event_t *ev){
-
+  qNode *rov;
+  if(ev != NULL){
+    queue_finalize(&(ev->queue));
+  
+  
+    free(ev);
+  }
 }
 
 event_t *event_create(void){
@@ -32,6 +38,7 @@ void event_schedule(event_t *ev){
 
 }
 
+/* pops top off */
 event_t *event_cause(void){
   event_t * ev = priority_remove(eq);
   return ev;
