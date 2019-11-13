@@ -19,6 +19,8 @@ int main(void){
   start_ev->event_time = 0.0;
   event_schedule(start_ev);
   new_ev = start_ev;
+  //eq = priority_init();
+
   /* run main loop */
   while(!priority_empty(eq))
   {

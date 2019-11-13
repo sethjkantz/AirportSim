@@ -1,7 +1,7 @@
-/* 
+/*
    event.c
 
-   - events and event queue (PQ) 
+   - events and event queue (PQ)
    - calls priority to create an event PQ
 
    ?-
@@ -22,7 +22,7 @@ void event_init(void){
   eq = priority_init(MAX_PASS);
 }
 
-/* 
+/*
 ******MEM LEAK IN THIS FUNCTION?*********************
    frees up all event space, including space in the priority
    queue */
@@ -32,7 +32,7 @@ void event_fini(event_t *ev){
     priority_finalize(eq);
     free(ev->passenger);
     free(ev);
-    ev = NULL;
+    //ev = NULL; changed this, shouldn't need to set ot NULL after freeing
   }
 }
 
@@ -47,7 +47,7 @@ event_t *event_create(void){
 void event_destroy(event_t *ev){
   ev = priority_remove(eq);
   event_fini(ev);
-  
+
 }
 
 /* inserts ev into pq */
