@@ -13,13 +13,14 @@
 
 #include "defs.h"
 
+static priority_t * eq;
 
 /* initializes events, creates a priority queue */
 /* should this be a void void? / is anything happening in this function
    ? - SJK
 */
 void event_init(void){
-  priority_t Events = priority_init(MAX_PASS);
+  eq = priority_init(MAX_PASS);
 }
 
 /* frees up all event space, including space in the priority
