@@ -35,10 +35,10 @@ int priority_full(priority_t *heap);
 void priority_finalize(priority_t *heap);
 
 // /* heapify the heap with max at top */
-// priority_t * max_heapify(priority_t *Arr, int i, int n);
+// priority_t * max_heapify(priority_t *Arr, int i);
 
 /* heapify the heap with main at top */
-priority_t * min_heapify (priority_t *heap, int i, int n);
+priority_t * min_heapify (priority_t *heap, int i);
 
 
 #endif
