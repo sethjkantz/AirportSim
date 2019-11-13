@@ -4,9 +4,9 @@
    PQ implemented as a heap   
    also called the event queue
 
-   Arr[(i]	Returns the parent node     
-   Arr[(2*i)]	Returns the left child node 
-   Arr[(2*i)+1]	Returns the right child node*/
+   Arr[(i)]	Returns the parent node     
+   Arr[(2*i)+1]	Returns the left child node 
+   Arr[(2*i)+2]	Returns the right child node*/
 
 #include "defs.h"
 
@@ -41,44 +41,50 @@
 */
   int priority_insert(priority_t *heap, event_t *ev){
     int index = heap->items;
-    int success = 0;
+    int success = -1;
     
     if(heap==NULL) return -1;
     
     if(!priority_full(heap)){
       heap->array[index] = ev;
-      heap = min_heapify(heap,1);
-      index++;
-    }else{
-      success = -1;
+      (heap->items)++;
+      heap = min_heapify(heap,0);
+      success = 0;
     }
 
-    heap->items = index;
     return success;
 }
 
+/*
+  removes top priority event and returns it
+*/
   event_t *priority_remove(priority_t *heap){
     event_t * Event;
 
-    if(priority_empty(heap)!=0){
-      fprintf(stdout,"\nEmpty priority_t.\n");
-    }
+    if(heap == NULL) return NULL;
+    if(priority_empty(heap)) return heap;
 
     Event = heap->array[0];
-    heap->array[0] = heap->array[heap->items-1];
+    /*
+      I'm kinda tired but I dont think this is the correct removal process - SJK
+     */
+    heap->array[0] = heap->array[heap->items - 1];
+    free(heap->array[heap->items - 1]);
     heap->items--;
-    //min_heapify(heap,x,x) FIX THIS
+    min_heapify(heap,0);
     return Event;
   }
 
+/*1 if empty*/
   int priority_empty(priority_t *heap){
     if(heap->items == 0){
       fprintf(stdout,"priority_t is Empty");
-      return -1;
+      return 1;
     }
     return 0;
   }
 
+/* 1 if full*/
   int priority_full(priority_t *heap){
     if(heap->items < heap->MAXCAPACITY){
        return 0;
@@ -88,13 +94,18 @@
     }
   }
 
-  void priority_finalize(priority_t *heap){
-
+/*
+  terminates heap
+*/
+void priority_finalize(priority_t *heap){
+    
+    free(heap);
   }
 
+/* swaps vals downward to get min to top */
 priority_t * min_heapify (priority_t *heap, int i) {
-  int left  = 2*i;
-  int right = 2*i+1;
+  int left  = 2*i+1;
+  int right = 2*i+2;
   int smallest, n;
   event_t *temp;
 
