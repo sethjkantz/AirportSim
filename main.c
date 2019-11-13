@@ -43,25 +43,24 @@ int main(void){
 
           new_ev->event_time = enter_airline_queue_time();
           fprintf(stdout, "Passenger will arrive at queue at %f\n", new_ev->event_time);
-<<<<<<< HEAD
-
-=======
->>>>>>> 5d091cba790ab5ee2bc27e03646cc340605917e1
           event_schedule(new_ev);
 
           /* create EV_ENQUEUE event for this passenger */
           /* schedule EV_ENQUEUE event */
-          if (MAX_PASS > num_passengers++)
+          if (MAX_PASS > num_passengers)
           {
 	            // create new EV_ARRIVE event and passsenger
               // schedule EV_ARRIVE event
-	    fprintf(stdout,"New arrival\n");
+	            fprintf(stdout,"New arrival\n");
               new_ev = event_create();
               new_ev->event_time = interarrival_time();
               event_schedule(new_ev);
+
+              num_passengers++; //add new passenger count
           }
           break;
       case (EV_AIRLINEQ) :
+          fprintf("My boi made it!!\n");
           break;
       case (EV_AIRLINE) :
           break;
