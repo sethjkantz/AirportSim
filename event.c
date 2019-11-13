@@ -23,7 +23,9 @@ void event_init(void){
   eq = priority_init(MAX_PASS);
 }
 
-/* frees up all event space, including space in the priority
+/* 
+******MEM LEAK IN THIS FUNCTION?*********************
+   frees up all event space, including space in the priority
    queue */
 void event_fini(event_t *ev){
   if(ev != NULL){

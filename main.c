@@ -14,7 +14,7 @@ priority_t * eq;
 int main(void){
   /* malloc new EV_ARRIVE event and passenger */
   event_t *start_ev, *new_ev;
-  start_ev = event_create();
+  start_ev = event_create();  // this causes a mem leak - prolly not being finilized
 
   /* schedule EV_ARRIVE event at t=0 and put in event queue */
   start_ev->event_time = 0.0;
