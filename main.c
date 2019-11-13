@@ -9,6 +9,8 @@
 
 #include"defs.h"
 
+priority_t * eq;
+
 int main(void){
   /* malloc new EV_ARRIVE event and passenger */
   event_t *start_ev, *new_ev;
@@ -19,11 +21,11 @@ int main(void){
   event_schedule(start_ev);
   new_ev = start_ev;
   /* run main loop */
-  while(new_ev != NULL) //FIXME where does eq come from ?!?!
+  while(!priority_empty(eq)) //FIXME where does eq come from ?!?!
   {
       new_ev = event_cause();
       time_set(new_ev->event_time);
-      
+
       switch (new_ev->event_type)
       {
       case (EV_ARRIVE) :
