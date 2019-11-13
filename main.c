@@ -11,41 +11,48 @@
 
 int main(void){
   /* malloc new EV_ARRIVE event and passenger */
-  event_t *start_ev, *new_ev;
-  num_passengers = 0;
+  event_t *new_ev;
+  passenger_t *temp_pass;
 
   event_init();
-  start_ev = event_create();  // this causes a mem leak - prolly not being finilized
   new_ev = event_create();
+  num_passengers = 1;
 
   /* schedule EV_ARRIVE event at t=0 and put in event queue */
-  start_ev->event_time = 0.0;
-  event_schedule(start_ev);
-  new_ev = start_ev;
+  new_ev->event_time = 0.0;
+  event_schedule(new_ev);
 
   /* run main loop */
-
-
   while(!priority_empty(eq))
   {
       //create new event
       new_ev = event_cause();
-      time_set(new_ev->event_time);
-
 
       switch (new_ev->event_type) {
       case (EV_ARRIVE) :
           new_ev->passenger->arrival_time = time_get();
+          fprintf(stdout,"Passenger arrived at %d\n",new_ev->passenger->arrival_time);
+          temp_pass = new_ev->passenger; //hold out passenger
+
+          //move old passenger to next event
+          event_destroy(new_ev); //clear old event
+
+          new_ev = event_create(); //pass to next event
+          new_ev->passenger = temp_pass;
+          new_ev->event_type = 1;
+          new_event->event_time = enter_airline_queue_time();
+          fprintf(stdout, "Passenger will arrive at queue at %d\n", new_event->event_time);
           event_schedule(new_ev);
 
           /* create EV_ENQUEUE event for this passenger */
           /* schedule EV_ENQUEUE event */
           if (MAX_PASS > num_passengers++)
           {
-	    // create new EV_ARRIVE event and passsenger
+	            // create new EV_ARRIVE event and passsenger
               // schedule EV_ARRIVE event
+              fprintf(stdout,"New arrival\n");
               new_ev = event_create();
-              new_ev->passenger->arrival_time = time_get();
+              new_ev->event_time = interarrival_time();
               event_schedule(new_ev);
           }
           break;

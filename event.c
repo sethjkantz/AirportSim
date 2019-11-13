@@ -34,7 +34,7 @@ event_t *event_create(void){
   event_t *new_ev = (event_t *)malloc(sizeof(event_t));
   new_ev->passenger = (passenger_t *)malloc(sizeof(passenger_t));
   new_ev->queue = (queue_t *)malloc(sizeof(queue_t));
-  new_ev->event_type = -1; // allows for first increment to be EV_ARRIVE
+  new_ev->event_type = 0; // allows for first increment to be EV_ARRIVE
 
   return new_ev;
 }
@@ -42,14 +42,13 @@ event_t *event_create(void){
 /* removes and frees top event*/
 void event_destroy(event_t *ev){
   ev = priority_remove(eq);
-  event_fini(ev);
+  //event_fini(ev);
 
 }
 
 /* inserts ev into pq */
 void event_schedule(event_t *ev){
-  //increment event type
-  (ev->event_type)++;
+
   switch(ev->event_type) {
   case (EV_ARRIVE):
     // add time to new event from current time
@@ -83,7 +82,7 @@ void event_schedule(event_t *ev){
 /* pops top off */
 event_t *event_cause(void){
   event_t * ev = priority_remove(eq);
-  time_set(ev->event_time +time_get());
+  time_set(ev->event_time + time_get());
 
   return ev;
 }
