@@ -31,7 +31,7 @@
       fprintf(stdout,"\nMemory Allocation Error in Array Malloc\n");
       return NULL;
     }
-
+    printf("init\n");
     return heap;
 }
 
@@ -53,7 +53,7 @@
       heap = min_heapify(heap,0);
       success = 0;
     }
-
+    printf("insert\n");
     return success;
 }
 
@@ -63,7 +63,10 @@
   event_t *priority_remove(priority_t *heap){
     event_t * Event;
 
-    if(heap == NULL) return NULL;
+    if(heap == NULL){
+      
+      return NULL;
+    }
     if(priority_empty(heap)) return NULL;
 
     Event = heap->array[0];
@@ -74,6 +77,7 @@
     free(heap->array[heap->items - 1]);
     heap->items--;
     min_heapify(heap,0);
+    printf("remove\n");
     return Event;
   }
 
