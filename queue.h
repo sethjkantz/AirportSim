@@ -44,6 +44,6 @@ int queue_full(queue_t *qPtr);
 
 /* free all resourced used by the queue then free
    the queue itself */
-void queue_finalize(queue_t **qPtr);
+void queue_finalize(queue_t *qPtr);
 
 #endif

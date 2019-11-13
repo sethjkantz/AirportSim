@@ -147,20 +147,20 @@ int queue_full(queue_t *qPtr){
   frees each nodes data
   frees said node
   frees queue
-  INPUT: **queue_t
+  INPUT: *queue_t
 */
-void queue_finalize(queue_t **qPtr){
-  queue_t *q = *qPtr;
+void queue_finalize(queue_t *qPtr){
   qNode *rov, *next;
-  if(q!=NULL){
-    rov = q->head;
+  if(qPtr!=NULL){
+    rov = qPtr->head;
     while(rov != NULL){
       next = rov->next;
       free(rov);
       rov = next;
     }
-    free(q);
+    free(qPtr);
   }
+  qPtr = NULL;
 }
 
 
