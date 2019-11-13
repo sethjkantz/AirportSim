@@ -21,7 +21,7 @@ int main(void){
   /* schedule EV_ARRIVE event at t=0 and put in event queue */
   new_ev->event_time = 0.0;
   event_schedule(new_ev);
-  
+
 
   /* run main loop */
   while(!priority_empty(eq))
@@ -40,7 +40,7 @@ int main(void){
 
           new_ev = event_create(); //pass to next event
           new_ev->passenger = temp_pass;
-          new_ev->event_type = 1;
+          new_ev->event_type = EV_AIRLINEQ;
 
           new_ev->event_time = enter_airline_queue_time();
           fprintf(stdout, "Passenger will arrive at queue at %f\n", new_ev->event_time);
@@ -61,7 +61,9 @@ int main(void){
           }
           break;
       case (EV_AIRLINEQ) :
-	fprintf(stdout,"My boi made it!!\n");
+        new_ev->passenger->airlineQ_time = time_get();
+        fprintf(stdout,"Passenger arrived at airline queue %f\n",new_ev->passenger->airlineQ_time);
+        event_destroy(new_ev);
           break;
       case (EV_AIRLINE) :
           break;
