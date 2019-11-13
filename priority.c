@@ -40,10 +40,12 @@
      return 0 if successful, -1 otherwise
 */
   int priority_insert(priority_t *heap, event_t *ev){
-    int index = heap->items;
+    int index;
     int success = -1;
     
     if(heap==NULL) return -1;
+
+    index = heap->items;
     
     if(!priority_full(heap)){
       heap->array[index] = ev;
