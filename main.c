@@ -23,6 +23,7 @@ int main(void){
   {
       new_ev = event_cause();
       time_set(new_ev->event_time);
+      
       switch (new_ev->event_type)
       {
       case (EV_ARRIVE) :
