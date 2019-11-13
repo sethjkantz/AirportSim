@@ -62,7 +62,7 @@
     event_t * Event;
 
     if(heap == NULL) return NULL;
-    if(priority_empty(heap)) return heap;
+    if(priority_empty(heap)) return NULL;
 
     Event = heap->array[0];
     /*
