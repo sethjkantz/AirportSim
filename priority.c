@@ -79,21 +79,23 @@
 
 /*1 if empty*/
   int priority_empty(priority_t *heap){
+    int ret = 0;
+    if(heap==NULL) return 1;
+    
     if(heap->items == 0){
       fprintf(stdout,"priority_t is Empty");
-      return 1;
+      ret = 1;
     }
-    return 0;
+    return ret;
   }
 
 /* 1 if full*/
   int priority_full(priority_t *heap){
-    if(heap->items < heap->MAXCAPACITY){
-       return 0;
-    }
-    else{
-      return 1;
-    }
+    int ret = 0;
+
+    if(heap==NULL) return 0;
+    if(heap->items >= heap->MAXCAPACITY) ret = 1;
+    return ret;
   }
 
 /*
