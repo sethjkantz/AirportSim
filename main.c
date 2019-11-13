@@ -21,13 +21,14 @@ int main(void){
   /* schedule EV_ARRIVE event at t=0 and put in event queue */
   new_ev->event_time = 0.0;
   event_schedule(new_ev);
+  
 
   /* run main loop */
   while(!priority_empty(eq))
   {
       //create new event
       new_ev = event_cause();
-
+      fprintf(stdout," ev type = %d \n",new_ev->event_type);
       switch (new_ev->event_type) {
       case (EV_ARRIVE) :
           new_ev->passenger->arrival_time = time_get();
@@ -60,7 +61,7 @@ int main(void){
           }
           break;
       case (EV_AIRLINEQ) :
-          fprintf("My boi made it!!\n");
+	fprintf(stdout,"My boi made it!!\n");
           break;
       case (EV_AIRLINE) :
           break;
