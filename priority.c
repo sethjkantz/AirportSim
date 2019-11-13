@@ -47,7 +47,7 @@
     }
     else{
       heap->array[index] = ev;
-      //min_heapify(heap,x,x) //FIX THIS
+      //heap = min_heapify(heap,x,x) //FIX THIS
       index++;
     }
 
