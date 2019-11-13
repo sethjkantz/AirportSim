@@ -13,6 +13,8 @@
 
 #include "defs.h"
 
+/* not sure if this should be here, I think 2 eqs are exisitng
+    and one is stayin NULL */
 static priority_t * eq;
 
 /* initializes events, creates a priority queue */
