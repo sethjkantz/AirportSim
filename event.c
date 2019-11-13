@@ -8,7 +8,9 @@
 #include "defs.h"
 /* initializes events, creates a priority queue */
 void event_init(void){
-
+  int size;
+  size = MAX_PASS;
+  priority_t Events = priority_init(size);
 }
 
 /* frees up all event space, including space in the priority
