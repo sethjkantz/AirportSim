@@ -23,6 +23,7 @@ int main(void){
   /* run main loop */
   while(!priority_empty(eq))
   {
+      //create new event
       new_ev = event_cause();
       time_set(new_ev->event_time);
 
@@ -30,6 +31,7 @@ int main(void){
       case (EV_ARRIVE) :
           new_ev->passenger->arrival_time = time_get();
           event_schedule(new_ev);
+          
           /* create EV_ENQUEUE event for this passenger */
           /* schedule EV_ENQUEUE event */
           if (MAX_PASS > num_passengers++)

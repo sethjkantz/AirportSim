@@ -1,11 +1,11 @@
-/* 
+/*
    priority.c
 
-   PQ implemented as a heap   
+   PQ implemented as a heap
    also called the event queue
 
-   Arr[(i)]	Returns the parent node     
-   Arr[(2*i)+1]	Returns the left child node 
+   Arr[(i)]	Returns the parent node
+   Arr[(2*i)+1]	Returns the left child node
    Arr[(2*i)+2]	Returns the right child node*/
 
 #include "defs.h"
@@ -42,11 +42,11 @@
   int priority_insert(priority_t *heap, event_t *ev){
     int index;
     int success = -1;
-    
+
     if(heap==NULL) return -1;
 
     index = heap->items;
-    
+
     if(!priority_full(heap)){
       heap->array[index] = ev;
       (heap->items)++;
@@ -81,7 +81,7 @@
   int priority_empty(priority_t *heap){
     int ret = 0;
     if(heap==NULL) return 1;
-    
+
     if(heap->items == 0){
       fprintf(stdout,"priority_t is Empty");
       ret = 1;
@@ -103,11 +103,11 @@
 */
 void priority_finalize(priority_t *heap){
   if(heap==NULL) return;
-  
+
   while(!priority_empty(heap)){
     free(priority_remove(heap));
   }
-  
+
   free(heap);
 }
 
@@ -120,10 +120,11 @@ priority_t * min_heapify (priority_t *heap, int i) {
 
   // double check exists
   if(heap == NULL) return NULL;
-  if((heap->items == 1) || (i == 0)) return heap;
+  if(((heap->items) == 1) || (i <= 0)) return heap;
 
+  //number of nodes to heapify
   n = heap->MAXCAPACITY;
-  
+
 
   if((left <= n) &&  (heap->array[left]->event_time < heap->array[i]->event_time) )
       smallest = left;
