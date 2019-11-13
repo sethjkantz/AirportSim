@@ -40,6 +40,8 @@ event_t *event_create(void){
   event_t *new_ev = (event_t *)malloc(sizeof(event_t));
   new_ev->passenger = (passenger_t *)malloc(sizeof(passenger_t));
   new_ev->queue = (queue_t *)malloc(sizeof(queue_t));
+  new->event_type = -1; // allows for first increment to be EV_ARRIVE
+
   return new_ev;
 }
 
@@ -52,6 +54,36 @@ void event_destroy(event_t *ev){
 
 /* inserts ev into pq */
 void event_schedule(event_t *ev){
+  //increment event type
+  (ev->event_type)++;
+  switch(ev->event_type) {
+  case (EV_ARRIVE):
+    // add time to new event from current time
+    ev->event_time = time_get() + interarrival_time();
+    break;
+  case (EV_AIRLINEQ) :
+    // add time to new event from current time
+    ev->event_time = time_get() + enter_airline_queue_time();
+    break;
+  case (EV_AIRLINE) :
+    break;
+  case (EV_IDQ) :
+    break;
+  case (EV_ID) :
+    break;
+  case (EV_SCANQ) :
+    break;
+  case (EV_SCAN) :
+    break;
+  case (EV_TRAINQ) :
+    break;
+  case (EV_TRAIN) :
+    break;
+  case (EV_GATE) :
+    break;
+  }
+
+
   priority_insert(eq,ev);
 }
 

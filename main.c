@@ -9,7 +9,6 @@
 
 #include"defs.h"
 
-
 int main(void){
   /* malloc new EV_ARRIVE event and passenger */
   event_t *start_ev, *new_ev;
@@ -27,16 +26,18 @@ int main(void){
       new_ev = event_cause();
       time_set(new_ev->event_time);
 
-      switch (new_ev->event_type)
-      {
+      switch (new_ev->event_type) {
       case (EV_ARRIVE) :
           new_ev->passenger->arrival_time = time_get();
+          event_schedule(new_ev);
           /* create EV_ENQUEUE event for this passenger */
           /* schedule EV_ENQUEUE event */
           if (MAX_PASS > num_passengers++)
           {
               /* create new EV_ARRIVE event and passsenger */
               /* schedule EV_ARRIVE event */
+              new_ev->passenger->arrival_time = time_get();
+              event_schedule(new_ev);
           }
           break;
       case (EV_AIRLINEQ) :
