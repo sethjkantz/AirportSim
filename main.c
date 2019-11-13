@@ -12,6 +12,7 @@
 int main(void){
   /* malloc new EV_ARRIVE event and passenger */
   event_t *start_ev, *new_ev;
+  num_passengers = 0;
   event_init();
   start_ev = event_create();  // this causes a mem leak - prolly not being finilized
   new_ev = event_create();
@@ -22,29 +23,26 @@ int main(void){
 
   /* run main loop */
 
-  
+
   while(!priority_empty(eq))
   {
       //create new event
       new_ev = event_cause();
       time_set(new_ev->event_time);
 
+
       switch (new_ev->event_type) {
       case (EV_ARRIVE) :
           new_ev->passenger->arrival_time = time_get();
           event_schedule(new_ev);
-<<<<<<< HEAD
-          
+
           /* create EV_ENQUEUE event for this passenger */
           /* schedule EV_ENQUEUE event */
-=======
-          // create EV_ENQUEUE event for this passenger 
-          // schedule EV_ENQUEUE event 
->>>>>>> 1f55aa5fcff2e1d0770b886a7309d8820823cb1a
           if (MAX_PASS > num_passengers++)
           {
-	    // create new EV_ARRIVE event and passsenger 
-              // schedule EV_ARRIVE event 
+	    // create new EV_ARRIVE event and passsenger
+              // schedule EV_ARRIVE event
+              new_ev = event_create();
               new_ev->passenger->arrival_time = time_get();
               event_schedule(new_ev);
           }
@@ -67,9 +65,9 @@ int main(void){
           break;
       case (EV_GATE) :
           break;
-      // remaining event types 
+      // remaining event types
       default :
-          // error 
+          // error
           fprintf(stderr, "Something went wrong.");
           //return -1;
           break;

@@ -5,19 +5,13 @@
    - calls priority to create an event PQ
 
    ?-
-   - is eq a global pq?
-   - is init doing anything?
-   - is any of this doing anythin?
-   - why did we choose this major?
 */
 
 #include "defs.h"
 
 
 /* initializes events, creates a priority queue */
-/* should this be a void void? / is anything happening in this function
-   ? - SJK
-*/
+
 void event_init(void){
   eq = priority_init(MAX_PASS);
 }
@@ -83,13 +77,13 @@ void event_schedule(event_t *ev){
     break;
   }
 
-
   priority_insert(eq,ev);
 }
 
 /* pops top off */
-/* Is eq a global ? - SJK*/
 event_t *event_cause(void){
   event_t * ev = priority_remove(eq);
+  sim_time = ev->event_time +time_get();
+
   return ev;
 }
