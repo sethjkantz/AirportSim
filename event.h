@@ -2,16 +2,18 @@
    - Header file for event.c
 
  */
+
 #ifndef event_h
 #define event_h 1
-struct event_s
+
+typedef struct event_s
 {
    int event_type;        /* type of event – see below */
    queue_t *queue;         /* queue passenger is waiting in */
    double event_time;     /* sim time when event occurs */
    passenger_t *passenger;/* passenger related to this event */
-};
-typedef struct event_s event_t;
+} event_t;
+
 
 
 /* initializes events, creates a priority queue */
