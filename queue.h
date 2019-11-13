@@ -1,10 +1,8 @@
 /* queue.h */
-// FIXME change all return types to non-void types
-// just shlappin this in here for now, prolly gonna alter
-//typedef void * vP;
 
 #ifndef queue_h
 #define queue_h 1
+
 typedef int q_dtype;
 
 typedef struct node{
@@ -34,7 +32,7 @@ qNode * queue_peek(queue_t *qPtr);
 
 /* remove the next item from the queue
    and return it, return NULL if there is an error */
-void queue_remove(queue_t *qPtr, int d);
+void queue_remove(queue_t *qPtr, int *d);
 
 /* return the number of items in the queue
    You can see if queue is empty with this */
@@ -47,8 +45,5 @@ int queue_full(queue_t *qPtr);
 /* free all resourced used by the queue then free
    the queue itself */
 void queue_finalize(queue_t **qPtr);
-
-/* FIXME prints out the queue */
-void q_print(queue_t *qPtr);
 
 #endif

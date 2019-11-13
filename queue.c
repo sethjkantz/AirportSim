@@ -20,7 +20,7 @@
 /*
   initializes and returns a pointer to a new queue
   INPUT: size of queue to be made (as an int)
-  OUTPUT:  vP to queue_t
+  OUTPUT:  ptr to queue_t
 */
 queue_t * queue_init(int size){
 
@@ -33,7 +33,7 @@ queue_t * queue_init(int size){
 
 /*
   Adds qData d to a new node at the tail of the queue
-  INPUT: vP to queue_t, vP to data
+  INPUT: queue as ptr,  data as int
   OUTPUT: void
 */
 void queue_insert(queue_t *qPtr, int d){
@@ -57,13 +57,12 @@ void queue_insert(queue_t *qPtr, int d){
       temp->next = new;
       q->tail = new;
     }
-    //testq("added %p \n",new);
   }
 }
 
 /*
-  INPUT: - void pointer to queue_t
-  OUTPUT:  vP to node
+  INPUT:  pointer to queue_t
+  OUTPUT:  ptr to node
   - find next item in list but dont remove it
 */
 qNode * queue_peek(queue_t *qPtr){
@@ -84,9 +83,9 @@ qNode * queue_peek(queue_t *qPtr){
 /*
   removes the first node and sets the qData pointer to the
   value removed
-  INPUT: vP to queue_t, vp *d that will be set to removed data
+  INPUT: ptr to queue_t, int * that will be set to removed data
 */
-void queue_remove(queue_t *qPtr, int d){
+void queue_remove(queue_t *qPtr, int *d){
   queue_t *q = qPtr;
   qNode *temp;
   if(q != NULL){
@@ -104,8 +103,7 @@ void queue_remove(queue_t *qPtr, int d){
 	q->head->prev = NULL;
       }
 
-	    d = temp->data;
-      //testq("removed %p \n",temp);
+      *d = temp->data;
       free(temp);
     }
   }
@@ -113,7 +111,7 @@ void queue_remove(queue_t *qPtr, int d){
 
 /*
   returns size of queue
-  INPUT:     vP to queue_t
+  INPUT:     ptr to queue_t
   OUTPUT:    size as int
 
 */
@@ -136,9 +134,9 @@ int queue_size(queue_t *qPtr){
 
 }
 
-/*
+/* ****MIGHT NEED TO CHANGE******
   - Checks to see if queue is full
-  INPUT:     vP * to queue_t
+  INPUT:     queue_t
   OUTPUT:    returns 0 always since linked list
 */
 int queue_full(queue_t *qPtr){
@@ -149,7 +147,7 @@ int queue_full(queue_t *qPtr){
   frees each nodes data
   frees said node
   frees queue
-  INPUT: vP ** to queue_t
+  INPUT: **queue_t
 */
 void queue_finalize(queue_t **qPtr){
   queue_t *q = *qPtr;
@@ -160,21 +158,11 @@ void queue_finalize(queue_t **qPtr){
       next = rov->next;
       free(rov);
       rov = next;
-      //testq("removed %p \n",prev);
     }
     free(q);
   }
 }
 
-void q_print(queue_t *qPtr){
-  if(qPtr != NULL){
-    //testq("head: %p \n",qPtr->head);
-    //testq("tail: %p \n",qPtr->tail);
-    //testq("\n");
-  }else{
-   //testq("no queue to print \n");
-  }
-}
 
 
 #endif
