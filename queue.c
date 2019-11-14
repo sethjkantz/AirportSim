@@ -5,11 +5,6 @@
   Bradly Sanders
   queue.c
    - function definitions and stuff
-
-  TODO:
-  - test peek, size, and full functions
-  - test functions with new typedefs
-  - update queue dType
  */
 
 #ifndef Q_C
