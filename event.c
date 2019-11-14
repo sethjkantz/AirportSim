@@ -27,7 +27,7 @@ void event_fini(event_t *ev){
     free(ev->passenger);
     free(ev);
   }
-   priority_finalize(eq);
+  priority_finalize(eq);
 }
 
 event_t *event_create(void){
@@ -43,6 +43,7 @@ event_t *event_create(void){
 void event_destroy(event_t *ev){
   free(ev->queue);
   free(ev->passenger);
+  free(ev);
 
 
 }
@@ -78,6 +79,7 @@ void event_schedule(event_t *ev){
   }
 
   priority_insert(eq,ev);
+  
 }
 
 /* pops top off */

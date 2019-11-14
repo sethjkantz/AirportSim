@@ -38,7 +38,7 @@ int main(void){
           temp_pass = new_ev->passenger; //hold out passenger
 
           //move old passenger to next event
-          event_destroy(new_ev); //clear old event
+	   event_destroy(new_ev); //clear old event
 
 	  airq_ev = event_create(); //pass to next event
           airq_ev->passenger = temp_pass;
@@ -47,7 +47,6 @@ int main(void){
           airq_ev->event_time = enter_airline_queue_time();
           fprintf(stdout, "Passenger will arrive at queue at %f\n", airq_ev->event_time);
           event_schedule(airq_ev);
-
           /* create EV_ENQUEUE event for this passenger */
           /* schedule EV_ENQUEUE event */
           if (MAX_PASS > num_passengers)
@@ -93,7 +92,8 @@ int main(void){
       // free event
       
   }
-   event_fini(new_ev);
+
+  event_fini(new_ev);
   /* Print overall stats */
 
   return 0;
