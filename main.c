@@ -91,8 +91,9 @@ int main(void){
           break;
       }
       // free event
+      
   }
-  event_fini(new_ev);
+   event_fini(new_ev);
   /* Print overall stats */
 
   return 0;

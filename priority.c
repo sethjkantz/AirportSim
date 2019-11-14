@@ -108,10 +108,12 @@
 void priority_finalize(priority_t *heap){
   if(heap==NULL) return;
 
+  free(heap->array);
+  /*
   while(!priority_empty(heap)){
     free(priority_remove(heap));
   }
-
+  */
   free(heap);
 }
 

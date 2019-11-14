@@ -22,12 +22,12 @@ void event_init(void){
    queue */
 void event_fini(event_t *ev){
   if(ev != NULL){
-    queue_finalize(ev->queue);
-    priority_finalize(eq);
+    
+    free(ev->queue);
     free(ev->passenger);
     free(ev);
-    //ev = NULL; changed this, shouldn't need to set ot NULL after freeing
   }
+   priority_finalize(eq);
 }
 
 event_t *event_create(void){
