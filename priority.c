@@ -50,7 +50,7 @@
     if(!priority_full(heap)){
       heap->array[index] = ev;
       (heap->items)++;
-      heap = min_heapify(heap,0);
+      heap = heapify_bottom_to_top(heap,0);
       success = 0;
     }
     printf("insert\n");
@@ -74,9 +74,9 @@
       I'm kinda tired but I dont think this is the correct removal process - SJK
      */
     heap->array[0] = heap->array[heap->items - 1];
-    free(heap->array[heap->items - 1]);
+    //free(heap->array[heap->items - 1]);
     heap->items--;
-    min_heapify(heap,0);
+    heap = heapify_top_to_bottom(heap,0);
     printf("remove\n");
     return Event;
   }
