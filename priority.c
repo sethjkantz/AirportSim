@@ -175,7 +175,7 @@ priority_t * heapify_top_to_bottom(priority_t *h, int parent){
     if(left != -1 && h->array[left] < h->array[parent])
         min=left;
     else
-        min = parent_node;
+        min = parent;
     if(right != -1 && h->array[right] < h->array[min])
         min = right;
 
