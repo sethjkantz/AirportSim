@@ -47,11 +47,7 @@ int main(void){
           airq_ev->event_time = enter_airline_queue_time();
           fprintf(stdout, "Passenger will arrive at queue at %f\n", airq_ev->event_time);
           event_schedule(airq_ev);
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 5f6be968c1294ef7af27772ce5508655fe72386f
           /* create EV_ENQUEUE event for this passenger */
           /* schedule EV_ENQUEUE event */
           if (MAX_PASS > num_passengers)
@@ -95,7 +91,7 @@ int main(void){
           break;
       }
       // free event
-      
+
   }
 
   event_fini(new_ev);
