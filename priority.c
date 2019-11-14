@@ -147,7 +147,7 @@ priority_t * min_heapify (priority_t *heap, int i) {
   return heap;
 }
 
-priority_t* heapify_bottom_top(priority_t *h,int i){
+priority_t * heapify_bottom_to_top(priority_t *h, int i){
     int temp;
     int parent = (i-1)/2;
 
@@ -157,13 +157,13 @@ priority_t* heapify_bottom_top(priority_t *h,int i){
         temp = h->array[parent];
         h->array[parent] = h->array[i];
         h->array[i] = temp;
-        heapify_bottom_top(h,parent);
+        h = heapify_bottom_top(h,parent);
     }
 }
 
-void heapify_top_bottom(Heap *h, int parent_node){
-    int left = parent_node*2+1;
-    int right = parent_node*2+2;
+priority_t * heapify_top_to_bottom(priority_t *h, int parent){
+    int left = parent*2+1;
+    int right = parent*2+2;
     int min;
     int temp;
 
@@ -172,19 +172,19 @@ void heapify_top_bottom(Heap *h, int parent_node){
     if(right >= h->count || right <0)
         right = -1;
 
-    if(left != -1 && h->arr[left] < h->arr[parent_node])
+    if(left != -1 && h->arr[left] < h->arr[parent])
         min=left;
     else
-        min =parent_node;
+        min = parent_node;
     if(right != -1 && h->arr[right] < h->arr[min])
         min = right;
 
     if(min != parent_node){
         temp = h->arr[min];
-        h->arr[min] = h->arr[parent_node];
+        h->arr[min] = h->arr[parent];
         h->arr[parent_node] = temp;
 
         // recursive  call
-        heapify_top_bottom(h, min);
+        h = heapify_top_bottom(h, min);
     }
 }
