@@ -11,8 +11,6 @@
 #include "defs.h"
 
 /*
-  TODO
-  figure if this works
   creates an empty array with a single NULL value as per malloc
   can be used as an array
 */
