@@ -16,7 +16,7 @@ int main(void){
 
   event_init();
   time_init();
-  
+
   new_ev = event_create();
   num_passengers = 1;
 
@@ -40,13 +40,14 @@ int main(void){
           //move old passenger to next event
           event_destroy(new_ev); //clear old event
 
-	  airq_ev = event_create(); //pass to next event
+	        airq_ev = event_create(); //pass to next event
           airq_ev->passenger = temp_pass;
           airq_ev->event_type = EV_AIRLINEQ;
 
           airq_ev->event_time = enter_airline_queue_time();
           fprintf(stdout, "Passenger will arrive at queue at %f\n", airq_ev->event_time);
           event_schedule(airq_ev);
+
 
           /* create EV_ENQUEUE event for this passenger */
           /* schedule EV_ENQUEUE event */
