@@ -148,7 +148,7 @@ priority_t * min_heapify (priority_t *heap, int i) {
 }
 
 priority_t * heapify_bottom_to_top(priority_t *h, int i){
-    int temp;
+    event_t* temp;
     int parent = (i-1)/2;
 
     //check if nodes need to be swapped
@@ -157,7 +157,9 @@ priority_t * heapify_bottom_to_top(priority_t *h, int i){
         temp = h->array[parent];
         h->array[parent] = h->array[i];
         h->array[i] = temp;
-        h = heapify_bottom_top(h,parent);
+        return heapify_bottom_to_top(h,parent);
+    } else{
+      return h;
     }
 }
 
@@ -165,7 +167,7 @@ priority_t * heapify_top_to_bottom(priority_t *h, int parent){
     int left = parent*2+1;
     int right = parent*2+2;
     int min;
-    int temp;
+    event_t* temp;
 
     if(left >= h->items || left <0)
         left = -1;
@@ -179,12 +181,14 @@ priority_t * heapify_top_to_bottom(priority_t *h, int parent){
     if(right != -1 && h->array[right] < h->array[min])
         min = right;
 
-    if(min != parent_node){
+    if(min != parent){
         temp = h->array[min];
         h->array[min] = h->array[parent];
         h->array[parent] = temp;
 
         // recursive  call
-        h = heapify_top_bottom(h, min);
+        return heapify_top_to_bottom(h, min);
+    }else{
+      return h;
     }
 }
