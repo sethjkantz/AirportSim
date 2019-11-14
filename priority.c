@@ -167,22 +167,22 @@ priority_t * heapify_top_to_bottom(priority_t *h, int parent){
     int min;
     int temp;
 
-    if(left >= h->count || left <0)
+    if(left >= h->items || left <0)
         left = -1;
-    if(right >= h->count || right <0)
+    if(right >= h->items || right <0)
         right = -1;
 
-    if(left != -1 && h->arr[left] < h->arr[parent])
+    if(left != -1 && h->array[left] < h->array[parent])
         min=left;
     else
         min = parent_node;
-    if(right != -1 && h->arr[right] < h->arr[min])
+    if(right != -1 && h->array[right] < h->array[min])
         min = right;
 
     if(min != parent_node){
-        temp = h->arr[min];
-        h->arr[min] = h->arr[parent];
-        h->arr[parent_node] = temp;
+        temp = h->array[min];
+        h->array[min] = h->array[parent];
+        h->array[parent] = temp;
 
         // recursive  call
         h = heapify_top_bottom(h, min);
