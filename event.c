@@ -41,8 +41,9 @@ event_t *event_create(void){
 
 /* removes and frees top event*/
 void event_destroy(event_t *ev){
-  ev = priority_remove(eq);
-  //event_fini(ev);
+  free(ev->queue);
+  free(ev->passenger);
+
 
 }
 
