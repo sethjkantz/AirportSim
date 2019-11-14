@@ -38,10 +38,10 @@ void priority_finalize(priority_t *heap);
 priority_t * min_heapify (priority_t *heap, int i);
 
 /* heapify bottom to top */
-priority_t * heapify_bottom_to_top(priority_t *h,int i)
+priority_t * heapify_bottom_to_top(priority_t *h,int i);
 
 /* heapify top to bottom */
-priority_t * heapify_top_to_bottom(priority_t *h, int parent)
+priority_t * heapify_top_to_bottom(priority_t *h, int parent);
 
 // initialize a priority queue
 priority_t * eq;
