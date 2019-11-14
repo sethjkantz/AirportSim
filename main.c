@@ -10,7 +10,6 @@
 #include"defs.h"
 
 int main(void){
-  /* malloc new EV_ARRIVE event and passenger */
   event_t *new_ev, *airq_ev, *arrival_ev;
   passenger_t *temp_pass;
 
@@ -46,7 +45,6 @@ int main(void){
           airq_ev->event_type = EV_AIRLINEQ;
           airq_ev->event_time = time_airline();
 	  
-          fprintf(stdout, "Passenger will arrive at queue at %f\n", airq_ev->event_time);
 	  
           event_schedule(airq_ev);
 
@@ -67,11 +65,9 @@ int main(void){
           }
           break;
       case (EV_AIRLINEQ) :
-	// new_ev->passenger->airlineQ_time = time_get();
+
         fprintf(stdout,"Passenger arrived at airline queue %f\n",new_ev->passenger->airlineQ_time);
 	free(new_ev->passenger);
-        //event_destroy(new_ev);
-	
           break;
       case (EV_AIRLINE) :
           break;
