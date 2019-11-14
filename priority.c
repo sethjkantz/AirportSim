@@ -29,7 +29,7 @@
       fprintf(stdout,"\nMemory Allocation Error in Array Malloc\n");
       return NULL;
     }
-    printf("init\n");
+    //    printf("init\n");
     return heap;
 }
 
@@ -51,7 +51,7 @@
       heap = heapify_bottom_to_top(heap,0);
       success = 0;
     }
-    printf("insert\n");
+    //printf("insert\n");
     return success;
 }
 
@@ -75,7 +75,7 @@
     //free(heap->array[heap->items - 1]);
     heap->items--;
     heap = heapify_top_to_bottom(heap,0);
-    printf("remove\n");
+    //printf("remove\n");
     return Event;
   }
 
@@ -104,14 +104,15 @@
   terminates heap
 */
 void priority_finalize(priority_t *heap){
-  if(heap==NULL) return;
+  //if(heap==NULL) return;
 
-  free(heap->array);
+  // free(heap->array);
   /*
   while(!priority_empty(heap)){
     free(priority_remove(heap));
   }
   */
+  free(heap->array);
   free(heap);
 }
 

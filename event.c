@@ -17,22 +17,34 @@ void event_init(void){
    frees up all event space, including space in the priority
    queue */
 void event_fini(event_t *ev){
-  if(ev != NULL){
-    free(ev);
-  }
+
+  //if(ev != NULL){
+    
+    //free(ev->queue);
+    //free(ev->passenger);
+    //free(ev);
+  // }
+
   priority_finalize(eq);
 }
 
 /* Mallocs new event_t and sets it to arrive*/
 event_t *event_create(void){
   event_t *new_ev = (event_t *)malloc(sizeof(event_t));
-  new_ev->event_type = EV_ARRIVE;
+
+  //new_ev->passenger = (passenger_t *)malloc(sizeof(passenger_t));
+  //new_ev->queue = (queue_t *)malloc(sizeof(queue_t));
+  new_ev->event_type = EV_ARRIVE; // allows for first increment to be EV_ARRIVE
+
 
   return new_ev;
 }
 
 /* removes and frees top event*/
 void event_destroy(event_t *ev){
+  //free(ev->queue);
+  //free(ev->passenger);
+
   free(ev);
 }
 
