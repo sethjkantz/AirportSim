@@ -75,7 +75,7 @@ double randsim_gauss(double mean, double std)
 
 double interarrival_time(void)
 {
-	return randsim_exp(2.0);
+	return randsim_exp(180);
 }
 
 double enter_airline_queue_time(void)
