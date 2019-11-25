@@ -36,10 +36,10 @@ int main(void){
 
       switch (new_ev->event_type) {
       case (EV_ARRIVE) :
-	new_ev->passenger->arrival_time = time_get();
+	        new_ev->passenger->arrival_time = time_get();
           fprintf(stdout,"Passenger arrived at %f\n",new_ev->passenger->arrival_time);
 
-	  airq_ev = event_create(); //pass to next event
+	        airq_ev = event_create(); //pass to next event
           airq_ev->passenger = temp_pass;
           airq_ev->event_type = EV_AIRLINEQ;
           airq_ev->event_time = time_airline();
@@ -68,9 +68,9 @@ int main(void){
           break;
       case (EV_AIRLINEQ) :
 
-	new_ev->passenger->airlineQ_time = time_get();
+	      new_ev->passenger->airlineQ_time = time_get();
         fprintf(stdout,"Passenger arrived at airline queue %f\n",new_ev->passenger->airlineQ_time);
-	free(new_ev->passenger);
+	      free(new_ev->passenger);
         //event_destroy(new_ev);
 
           break;
