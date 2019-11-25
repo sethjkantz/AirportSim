@@ -21,20 +21,36 @@ void event_init(void){
    frees up all event space, including space in the priority
    queue */
 void event_fini(event_t *ev){
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8d2934c82979b625ac5a3eef0d372b8e2b4cb34d
   //if(ev != NULL){
     
     //free(ev->queue);
     //free(ev->passenger);
     //free(ev);
   // }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8d2934c82979b625ac5a3eef0d372b8e2b4cb34d
   priority_finalize(eq);
 }
 
 event_t *event_create(void){
   event_t *new_ev = (event_t *)malloc(sizeof(event_t));
+<<<<<<< HEAD
   //new_ev->passenger = (passenger_t *)malloc(sizeof(passenger_t));
   //new_ev->queue = (queue_t *)malloc(sizeof(queue_t));
   new_ev->event_type = EV_ARRIVE; // allows for first increment to be EV_ARRIVE
+=======
+
+  //new_ev->passenger = (passenger_t *)malloc(sizeof(passenger_t));
+  //new_ev->queue = (queue_t *)malloc(sizeof(queue_t));
+  new_ev->event_type = EV_ARRIVE; // allows for first increment to be EV_ARRIVE
+
+>>>>>>> 8d2934c82979b625ac5a3eef0d372b8e2b4cb34d
 
   return new_ev;
 }
@@ -43,6 +59,10 @@ event_t *event_create(void){
 void event_destroy(event_t *ev){
   //free(ev->queue);
   //free(ev->passenger);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8d2934c82979b625ac5a3eef0d372b8e2b4cb34d
   free(ev);
 
 

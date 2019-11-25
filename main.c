@@ -38,6 +38,10 @@ int main(void){
       case (EV_ARRIVE) :
 	new_ev->passenger->arrival_time = time_get();
           fprintf(stdout,"Passenger arrived at %f\n",new_ev->passenger->arrival_time);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8d2934c82979b625ac5a3eef0d372b8e2b4cb34d
 	  airq_ev = event_create(); //pass to next event
           airq_ev->passenger = temp_pass;
           airq_ev->event_type = EV_AIRLINEQ;
@@ -46,6 +50,10 @@ int main(void){
 	  
 	  //  fprintf(stdout, "Passenger will arrive at queue at %f\n", airq_ev->event_time);
 	  
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8d2934c82979b625ac5a3eef0d372b8e2b4cb34d
           event_schedule(airq_ev);
 
           /* create EV_ENQUEUE event for this passenger */
@@ -65,6 +73,10 @@ int main(void){
           }
           break;
       case (EV_AIRLINEQ) :
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8d2934c82979b625ac5a3eef0d372b8e2b4cb34d
 	new_ev->passenger->airlineQ_time = time_get();
         fprintf(stdout,"Passenger arrived at airline queue %f\n",new_ev->passenger->airlineQ_time);
 	free(new_ev->passenger);
@@ -99,6 +111,10 @@ int main(void){
   }
   //event_destroy(new_ev);
   //event_fini(new_ev);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8d2934c82979b625ac5a3eef0d372b8e2b4cb34d
   event_fini(new_ev);
 /* Print overall stats */
 
