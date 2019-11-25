@@ -36,7 +36,7 @@ typedef struct passenger_s
 }passenger_t;
 
 
-#define MAX_PASS 10
+#define MAX_PASS 1000
 int num_passengers;
 
 #endif
