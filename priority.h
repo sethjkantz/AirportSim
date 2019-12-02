@@ -8,7 +8,7 @@ typedef struct priority_s priority_t;
 
 /* create and initialize a new priority queue 
    return pointer to the new priority queue, NULL if error */
-priority_t *priority_init();
+priority_t *priority_init(int size);
 
 /* insert an item into the priority queue 
    return 0 if successful, -1 otherwise */
