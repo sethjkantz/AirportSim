@@ -22,7 +22,11 @@ struct priority_s
 /* create and initialize a new priority queue
    must be able to hold at least size items
    return pointer to the new priority queue, NULL if error */
+<<<<<<< HEAD
 priority_t *priority_init()
+=======
+priority_t *priority_init(int size)
+>>>>>>> 87a1b1bdb3ddc1422d7a3f814efefa8f473cdbff
 {
     priority_t *pri = (priority_t *)malloc(sizeof(priority_t));
     memset(pri, 0, sizeof(priority_t));
