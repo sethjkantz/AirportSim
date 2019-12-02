@@ -4,7 +4,7 @@
 #define QUEUE_H
 
 typedef struct queue_s queue_t;
-typedef struct q_data_t q_data_t;
+typedef passenger_t q_data_t;
 
 /* create and initialize a new queue 
    must be able to hold at least size items
