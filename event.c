@@ -16,7 +16,7 @@ static priority_t *p_queue = NULL;
    including the size of the queue */
 void event_init(int size)
 {
-    p_queue = priority_init();
+    p_queue = priority_init(size);
 }
 
 /* frees up all event space, including space in the priority
