@@ -81,6 +81,18 @@ int main(int argc, char **argv)
             passenger_destroy(new_ev->passenger);
             break;
         case (EV_AIRLINE) :
+        event_t *airline_ev;
+
+        printf("new passenger %d arrives: %f\n",
+               new_ev->passenger->pass_id,
+               new_ev->event_time);
+
+        airline_ev = event_create();
+        airline_ev->passenger = new_ev->passenger;
+        airline_ev->passenger->arrival_time = time_get();
+        airline_ev->event_time = time_airlineQ();
+        airline_ev->event_type = EV_AIRLINEQ;
+        event_schedule(airline_ev);
             break;
         case (EV_IDQ) :
             break;
