@@ -15,7 +15,7 @@
 #define MAX_SCAN 4
 #define QSZ 100 /* not used by queue.c */
 
-static void parse_args(argc, argv);
+static void parse_args(int argc, char** argv);
 
 int num_passengers = 0; /* counts the number of passengers */
 
