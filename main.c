@@ -27,14 +27,18 @@ queue_t *trainQ;
 int main(int argc, char **argv)
 {
   int i;
-    /* process command line arguments */
+  event_t *airline_ev;
+  event_t *new_ev;
+  event_t *start_ev;  
+
+  /* process command line arguments */
     parse_args(argc, argv);
 
     /* initialize modules */
     event_init(QSZ);
     time_init();
 
-    event_t *start_ev;
+
     start_ev = event_create();
     start_ev->passenger = passenger_create();
     start_ev->passenger->pass_id = ++num_passengers;
@@ -51,14 +55,13 @@ int main(int argc, char **argv)
     /* run main loop */
     while(!event_empty())
     {
-        event_t *new_ev;
+        
         new_ev = event_cause();
         //time_set(new_ev->event_time);
         switch (new_ev->event_type)
         {
         case (EV_ARRIVE) :
         {
-            event_t *airline_ev;
 
             printf("new passenger %d arrives: %f\n",
                    new_ev->passenger->pass_id,
