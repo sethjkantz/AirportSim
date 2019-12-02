@@ -103,10 +103,6 @@ int main(int argc, char **argv)
 
           else if(atAirlineDesk == 0){
 
-            if(queue_peek(airlineQ)!=NULL){
-              new_ev->passenger = queue_remove(airlineQ);
-            }
-
             airline_ev = event_create();
             airline_ev->passenger = new_ev->passenger;
             airline_ev->passenger->airlineQ_time = time_get();
