@@ -80,7 +80,8 @@ q_data_t *queue_remove(queue_t *q)
         {
             q->tail = q->head = NULL;
         }
-        q->head = q->head->link;
+	if(q->head!=NULL)
+	  q->head = q->head->link;
         q->numitems--;
         next_d = next->data;
         free(next);

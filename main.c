@@ -23,7 +23,6 @@ int atAirlineDesk = 0;
 int atIDDesk = 0;
 int atScanDesk = 0;
 int atTrainDesk = 0;
-int atTrainDesk = 0;
 
 queue_t *airlineQ;
 queue_t *idQ;
