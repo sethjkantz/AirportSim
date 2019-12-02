@@ -26,6 +26,7 @@ queue_t *trainQ;
 
 int main(int argc, char **argv)
 {
+  int i;
     /* process command line arguments */
     parse_args(argc, argv);
 
@@ -40,6 +41,13 @@ int main(int argc, char **argv)
     start_ev->event_time = 0.0;
     start_ev->event_type = EV_ARRIVE;
     event_schedule(start_ev);
+
+    airlineQ = queue_init(QSZ);
+    idQ = queue_init(QSZ);
+    trainQ = queue_init(QSZ);
+    for(i=0;i<MAX_SCAN;i++)
+      scanQ[i] = queue_init(QSZ);
+    
     /* run main loop */
     while(!event_empty())
     {
