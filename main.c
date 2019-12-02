@@ -24,6 +24,7 @@ queue_t *airlineQ;
 queue_t *idQ;
 queue_t *scanQ[MAX_SCAN];
 queue_t *trainQ;
+queue_t *id;
 
 int main(int argc, char **argv)
 {
@@ -32,6 +33,7 @@ int main(int argc, char **argv)
   event_t *new_ev;
   event_t *start_ev;
   event_t *arrive_ev;
+  event_t *scan_ev;
 
   /* process command line arguments */
     parse_args(argc, argv);
@@ -88,6 +90,7 @@ int main(int argc, char **argv)
         }
             break;
         case (EV_AIRLINEQ) :
+
             printf("passenger %d departs: %f\n",
                    new_ev->passenger->pass_id,
                    new_ev->event_time);
@@ -111,35 +114,63 @@ int main(int argc, char **argv)
           }
 
 
+            break
+
             break;
         case (EV_AIRLINE) :
-
-        printf("new passenger %d arrives: %f\n",
+          printf("new passenger %d arrives at airline desk: %f\n",
                new_ev->passenger->pass_id,
                new_ev->event_time);
 
-        airline_ev = event_create();
-        airline_ev->passenger = new_ev->passenger;
-        airline_ev->passenger->arrival_time = time_get();
-        airline_ev->event_time = time_airlineQ();
-        airline_ev->event_type = EV_AIRLINEQ;
-        event_schedule(airline_ev);
+          id_ev = event_create();
+          id_ev->passenger = new_ev->passenger;
+          id_ev->passenger->airline_time = time_get();
+          id_ev->event_time = time_airlineQ();
+          id_ev->event_type = EV_IDQ;
+          //grab next passenger from queue
+        event_schedule(id_ev);
 
             break;
         case (EV_IDQ) :
 
             break;
         case (EV_ID) :
+          printf("new passenger %d arrives at ID desk: %f\n",
+               new_ev->passenger->pass_id,
+               new_ev->event_time);
+
+          scan_ev = event_create();
+          scan_ev->passenger = new_ev->passenger;
+          scan_ev->passenger->id_time = time_get();
+          scan_ev->event_time = time_airlineQ();
+          scan_ev->event_type = EV_SCANQ;
+        //grab next person from queue
             break;
         case (EV_SCANQ) :
             break;
         case (EV_SCAN) :
+        //empty for now
             break;
         case (EV_TRAINQ) :
             break;
         case (EV_TRAIN) :
+          printf("new passenger %d arrives at train: %f\n",
+               new_ev->passenger->pass_id,
+               new_ev->event_time);
+
+          scan_ev = event_create();
+          scan_ev->passenger = new_ev->passenger;
+          scan_ev->passenger->train_time = time_get();
+          scan_ev->event_time = time_airlineQ();
+          scan_ev->event_type = EV_SCANQ;
+        //grab next person from queue
             break;
         case (EV_GATE) :
+          printf("passenger %d departs: %f\n",
+               new_ev->passenger->pass_id,
+               new_ev->event_time);
+          new_ev->passenger->gate_time = time_get();
+          passenger_destroy(new_ev->passenger);
             break;
 
         default :
