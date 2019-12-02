@@ -98,13 +98,13 @@ int main(int argc, char **argv)
                    new_ev->event_time);
 
           if((atAirlineDesk == 1) ){
-             queue_insert(airlineQ, new_ev);
+             queue_insert(airlineQ, new_ev->passenger);
           }
 
           else if(atAirlineDesk == 0){
 
             if(queue_peek(airlineQ)!=NULL){
-              new_ev = queue_remove(airlineQ);
+              new_ev->passenger = queue_remove(airlineQ);
             }
 
             airline_ev = event_create();
