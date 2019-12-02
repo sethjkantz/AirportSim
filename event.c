@@ -1,85 +1,68 @@
-/*
-   event.c
+/* event.h */
 
-   - events and event queue (PQ)
-   - calls priority to create an event PQ
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
 
-   ?-
-*/
+#include "sim.h"
+#include "time.h"
+#include "event.h"  /* must come before priority.h */
+#include "priority.h"
 
-#include "defs.h"
+static priority_t *p_queue = NULL;
 
-
-/* initializes events, creates a priority queue */
-
-void event_init(void){
-  eq = priority_init(MAX_PASS);
+/* initializes events, creates a priority queue 
+   including the size of the queue */
+void event_init(int size)
+{
+    p_queue = priority_init();
 }
 
-/*
-   frees up all event space, including space in the priority
+/* frees up all event space, including space in the priority
    queue */
-void event_fini(event_t *ev){
-  priority_finalize(eq);
+void event_finalize()
+{
+    priority_finalize(p_queue);
 }
 
-event_t *event_create(void){
-  event_t *new_ev = (event_t *)malloc(sizeof(event_t));
-
-  //new_ev->passenger = (passenger_t *)malloc(sizeof(passenger_t));
-  //new_ev->queue = (queue_t *)malloc(sizeof(queue_t));
-  new_ev->event_type = EV_ARRIVE; // allows for first increment to be EV_ARRIVE
-
-  return new_ev;
+/* allocate a fresh event with empty fields */
+event_t *event_create()
+{
+    event_t *ev;
+    ev = (event_t *)malloc(sizeof(struct event_s));
+    if (ev)
+    {
+        memset(ev, 0, sizeof(struct event_s));
+    }
+    return ev; // NULL on error
 }
 
-/* removes and frees top event*/
-void event_destroy(event_t *ev){
-  //free(ev->queue);
-  //free(ev->passenger);
-
-  free(ev);
-
+/* free an event */
+void event_destroy(event_t *ev)
+{
+    free(ev);
 }
 
-/* inserts ev into pq */
-void event_schedule(event_t *ev){
-
-  switch(ev->event_type) {
-  case (EV_ARRIVE):
-    // add time to new event from current time
-    ev->event_time = time_get() + interarrival_time();
-    break;
-  case (EV_AIRLINEQ) :
-    // add time to new event from current time
-    ev->event_time = time_get() + enter_airline_queue_time();
-    break;
-  case (EV_AIRLINE) :
-    break;
-  case (EV_IDQ) :
-    break;
-  case (EV_ID) :
-    break;
-  case (EV_SCANQ) :
-    break;
-  case (EV_SCAN) :
-    break;
-  case (EV_TRAINQ) :
-    break;
-  case (EV_TRAIN) :
-    break;
-  case (EV_GATE) :
-    break;
-  }
-
-  priority_insert(eq,ev);
-
+/* insert the event into the priority queue.  The key
+   value is the current sim time plus the event_time in
+   event.  Update the event time to the key value. */
+void event_schedule(event_t *ev)
+{
+    ev->event_time += time_get();
+    priority_insert(p_queue, ev);
 }
 
-/* pops top off */
-event_t *event_cause(void){
-  event_t * ev = priority_remove(eq);
-  time_set(ev->event_time);
+/* returns 0 if there are more events in the event queue, and non zero
+   if there are no more events. */
+int event_empty()
+{
+    return priority_empty(p_queue);
+}
 
-  return ev;
+/* remove the next event from the priority queue, set the time to the event’s time, and then return it to the program for execution */
+event_t *event_cause()
+{
+    event_t *ev = (event_t *)priority_remove(p_queue);
+    return ev;  // NULL on error
 }
