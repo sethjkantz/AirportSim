@@ -109,6 +109,7 @@ int main(int argc, char **argv)
             airline_ev->event_time = time_airline();
             airline_ev->event_type = EV_AIRLINE;
             event_schedule(airline_ev);
+            atAirlineDesk = 1;
           }
           break;
 
@@ -122,6 +123,7 @@ int main(int argc, char **argv)
           id_ev->passenger->airline_time = time_get();
           id_ev->event_time = time_airlineQ();
           id_ev->event_type = EV_IDQ;
+          atAirlineDesk = 0;
           //grab next passenger from queue
         event_schedule(id_ev);
 
