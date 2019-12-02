@@ -10,7 +10,7 @@
 #include "event.h"
 #include "queue.h"
 #include "time.h"
- 
+
 #define MAX_PASS 100
 #define MAX_SCAN 4
 #define QSZ 100 /* not used by queue.c */
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
     /* initialize modules */
     event_init(QSZ);
     time_init();
-    
+
     event_t *start_ev;
     start_ev = event_create();
     start_ev->passenger = passenger_create();
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
     {
         event_t *new_ev;
         new_ev = event_cause();
-        time_set(new_ev->event_time);
+        //time_set(new_ev->event_time);
         switch (new_ev->event_type)
         {
         case (EV_ARRIVE) :
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
             event_t *airline_ev;
 
             printf("new passenger %d arrives: %f\n",
-                   new_ev->passenger->pass_id, 
+                   new_ev->passenger->pass_id,
                    new_ev->event_time);
 
             airline_ev = event_create();
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
         }
             break;
         case (EV_AIRLINEQ) :
-            printf("passenger %d departs: %f\n", 
+            printf("passenger %d departs: %f\n",
                    new_ev->passenger->pass_id,
                    new_ev->event_time);
             passenger_destroy(new_ev->passenger);
@@ -96,7 +96,7 @@ int main(int argc, char **argv)
             break;
         case (EV_GATE) :
             break;
-    
+
         default :
             /* error */
             break;
@@ -111,7 +111,7 @@ int main(int argc, char **argv)
     return 0;
 }
 
-static void parse_args(argc, argv)
+static void parse_args(int argc,char **argv)
 {
     /* optional command line args processed here */
 }

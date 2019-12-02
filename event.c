@@ -12,7 +12,7 @@
 
 static priority_t *p_queue = NULL;
 
-/* initializes events, creates a priority queue 
+/* initializes events, creates a priority queue
    including the size of the queue */
 void event_init(int size)
 {
@@ -64,5 +64,6 @@ int event_empty()
 event_t *event_cause()
 {
     event_t *ev = (event_t *)priority_remove(p_queue);
+    time_set(ev->event_time);
     return ev;  // NULL on error
 }
