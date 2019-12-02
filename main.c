@@ -18,6 +18,7 @@
 static void parse_args(int argc, char** argv);
 
 int num_passengers = 0; /* counts the number of passengers */
+int atAirlineDesk = 0;
 
 queue_t *airlineQ;
 queue_t *idQ;
@@ -91,7 +92,29 @@ int main(int argc, char **argv)
             break;
         case (EV_AIRLINEQ) :
 
-            break;
+            printf("passenger %d departs: %f\n",
+                   new_ev->passenger->pass_id,
+                   new_ev->event_time);
+
+          if((atAirlineDesk == 1) ){
+             queue_insert(airlineQ, new_ev);
+          }
+
+          else if(atAirlineDesk == 0){
+
+            if(queue_peek(airlineQ)!=NULL){
+              new_ev = queue_remove(airlineQ);
+            }
+
+            airline_ev = event_create();
+            airline_ev->passenger = new_ev->passenger;
+            airline_ev->passenger->airlineQ_time = time_get();
+            airline_ev->event_time = time_airline();
+            airline_ev->event_type = EV_AIRLINE;
+            event_schedule(airline_ev);
+          }
+          break;
+
         case (EV_AIRLINE) :
           printf("new passenger %d arrives at airline desk: %f\n",
                new_ev->passenger->pass_id,
@@ -104,8 +127,10 @@ int main(int argc, char **argv)
           id_ev->event_type = EV_IDQ;
           //grab next passenger from queue
         event_schedule(id_ev);
+
             break;
         case (EV_IDQ) :
+
             break;
         case (EV_ID) :
           printf("new passenger %d arrives at ID desk: %f\n",
