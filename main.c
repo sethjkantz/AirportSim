@@ -177,6 +177,11 @@ int main(int argc, char **argv)
     }
     /* Print overall stats */
     /* finalize modules */
+    queue_finalize(airlineQ);
+    queue_finalize(idQ);
+    queue_finalize(trainQ);
+    for(i=0;i<MAX_SCAN;i++)
+      queue_finalize(scanQ[i]);
     event_finalize();
     time_finalize();
     return 0;
