@@ -70,11 +70,17 @@ int main(void){
 
 	      new_ev->passenger->airlineQ_time = time_get();
         fprintf(stdout,"Passenger arrived at airline queue %f\n",new_ev->passenger->airlineQ_time);
-	      free(new_ev->passenger);
+        //-------------------------
+        //add passenger to queue
+        //schedule next event
+        //-------------------------
+        free(new_ev->passenger);//FIXME remove
         //event_destroy(new_ev);
 
           break;
       case (EV_AIRLINE) :
+        //-------------------------
+        //schedule next event
           break;
       case (EV_IDQ) :
           break;
@@ -89,6 +95,8 @@ int main(void){
       case (EV_TRAIN) :
           break;
       case (EV_GATE) :
+
+        free(new_ev->passenger);//final free after passenger arrives at gate
           break;
       // remaining event types
       default :
