@@ -18,6 +18,7 @@
 static void parse_args(int argc, char** argv);
 
 int num_passengers = 0; /* counts the number of passengers */
+int atAirlineDesk = 0;
 
 queue_t *airlineQ;
 queue_t *idQ;
@@ -52,11 +53,11 @@ int main(int argc, char **argv)
     trainQ = queue_init(QSZ);
     for(i=0;i<MAX_SCAN;i++)
       scanQ[i] = queue_init(QSZ);
-    
+
     /* run main loop */
     while(!event_empty())
     {
-        
+
         new_ev = event_cause();
         //time_set(new_ev->event_time);
         switch (new_ev->event_type)
@@ -76,7 +77,7 @@ int main(int argc, char **argv)
             event_schedule(airline_ev);
             if (MAX_PASS > num_passengers++)
             {
-                
+
                 arrive_ev = event_create();
                 arrive_ev->passenger = passenger_create();
                 arrive_ev->passenger->pass_id = ++num_passengers;
@@ -90,10 +91,28 @@ int main(int argc, char **argv)
             printf("passenger %d departs: %f\n",
                    new_ev->passenger->pass_id,
                    new_ev->event_time);
-            passenger_destroy(new_ev->passenger);
+
+          if((atAirlineDesk == 1) ){
+             queue_insert(airlineQ, new_ev);
+          }
+
+          else if(atAirlineDesk == 0){
+
+            if(queue_peek(airlineQ)!=NULL){
+              new_ev = queue_remove(airlineQ);
+            }
+
+            airline_ev = event_create();
+            airline_ev->passenger = new_ev->passenger;
+            airline_ev->passenger->airlineQ_time = time_get();
+            airline_ev->event_time = time_airline();
+            airline_ev->event_type = EV_AIRLINE;
+            event_schedule(airline_ev);
+          }
+
+
             break;
         case (EV_AIRLINE) :
-        
 
         printf("new passenger %d arrives: %f\n",
                new_ev->passenger->pass_id,
@@ -105,8 +124,10 @@ int main(int argc, char **argv)
         airline_ev->event_time = time_airlineQ();
         airline_ev->event_type = EV_AIRLINEQ;
         event_schedule(airline_ev);
+
             break;
         case (EV_IDQ) :
+
             break;
         case (EV_ID) :
             break;
