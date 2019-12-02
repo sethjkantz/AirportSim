@@ -33,6 +33,7 @@ int main(int argc, char **argv)
   event_t *start_ev;
   event_t *arrive_ev;
   event_t *scan_ev;
+  event_t *train_ev;
 
   /* process command line arguments */
     parse_args(argc, argv);
@@ -130,11 +131,11 @@ int main(int argc, char **argv)
                new_ev->passenger->pass_id,
                new_ev->event_time);
 
-          scan_ev = event_create();
-          scan_ev->passenger = new_ev->passenger;
-          scan_ev->passenger->train_time = time_get();
-          scan_ev->event_time = time_airlineQ();
-          scan_ev->event_type = EV_SCANQ;
+          train_ev = event_create();
+          train_ev->passenger = new_ev->passenger;
+          train_ev->passenger->train_time = time_get();
+          train_ev->event_time = time_airlineQ();
+          train_ev->event_type = EV_SCANQ;
         //grab next person from queue
             break;
         case (EV_GATE) :
