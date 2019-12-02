@@ -29,7 +29,8 @@ int main(int argc, char **argv)
   int i;
   event_t *airline_ev;
   event_t *new_ev;
-  event_t *start_ev;  
+  event_t *start_ev;
+  event_t *arrive_ev;
 
   /* process command line arguments */
     parse_args(argc, argv);
@@ -75,7 +76,7 @@ int main(int argc, char **argv)
             event_schedule(airline_ev);
             if (MAX_PASS > num_passengers++)
             {
-                event_t *arrive_ev;
+                
                 arrive_ev = event_create();
                 arrive_ev->passenger = passenger_create();
                 arrive_ev->passenger->pass_id = ++num_passengers;
@@ -92,7 +93,7 @@ int main(int argc, char **argv)
             passenger_destroy(new_ev->passenger);
             break;
         case (EV_AIRLINE) :
-        event_t *airline_ev;
+        
 
         printf("new passenger %d arrives: %f\n",
                new_ev->passenger->pass_id,
