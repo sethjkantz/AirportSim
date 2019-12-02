@@ -112,11 +112,8 @@ int main(int argc, char **argv)
             airline_ev->event_type = EV_AIRLINE;
             event_schedule(airline_ev);
           }
+          break;
 
-
-            break
-
-            break;
         case (EV_AIRLINE) :
           printf("new passenger %d arrives at airline desk: %f\n",
                new_ev->passenger->pass_id,
