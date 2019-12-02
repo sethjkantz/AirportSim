@@ -35,6 +35,7 @@ int main(int argc, char **argv)
   event_t *arrive_ev;
   event_t *scan_ev;
   event_t *train_ev;
+  event_t *id_ev;
 
   /* process command line arguments */
     parse_args(argc, argv);
