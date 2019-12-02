@@ -83,7 +83,7 @@ int main(int argc, char **argv)
 
                 arrive_ev = event_create();
                 arrive_ev->passenger = passenger_create();
-                arrive_ev->passenger->pass_id = ++num_passengers;
+                arrive_ev->passenger->pass_id = num_passengers;
                 arrive_ev->event_time = time_arrive();
                 arrive_ev->event_type = EV_ARRIVE;
                 event_schedule(arrive_ev);
