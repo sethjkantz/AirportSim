@@ -19,11 +19,10 @@ struct priority_s
     event_t *A[PRISIZE];
 };
 
-/* create and initialize a new priority queue 
+/* create and initialize a new priority queue
    must be able to hold at least size items
    return pointer to the new priority queue, NULL if error */
 priority_t *priority_init()
-priority_t *priority_init(int size)
 {
     priority_t *pri = (priority_t *)malloc(sizeof(priority_t));
     memset(pri, 0, sizeof(priority_t));
@@ -64,7 +63,7 @@ void priority_insert(priority_t *pri, event_t *pd)
     pri->A[child] = pd;
 }
 
-/* remove the highest priority item from the queue 
+/* remove the highest priority item from the queue
    and return it, return NULL if there is an error */
 event_t *priority_remove(priority_t *pri)
 {
@@ -116,7 +115,7 @@ int priority_empty(priority_t *pri)
     return (pri->count == 0);
 }
 
-/* return nono-zero if the priority queue is full 
+/* return nono-zero if the priority queue is full
    This may be trivial using a linked implementation */
 int priority_full(priority_t *pri)
 {
@@ -129,4 +128,3 @@ void priority_finalize(priority_t *pri)
 {
     free(pri);
 }
-
