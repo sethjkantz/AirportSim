@@ -56,12 +56,12 @@ int main(void){
           {
 	    // create new EV_ARRIVE event and passsenger
 	    // schedule EV_ARRIVE event
-	    fprintf(stdout,"New arrival\n");
-              arrival_ev = event_create();
-	      arrival_ev->passenger = (passenger_t *)malloc(sizeof(passenger_t));
-	      arrival_ev->event_type = EV_ARRIVE;
-              arrival_ev->event_time = time_arrive();
-              event_schedule(arrival_ev);
+          fprintf(stdout,"New arrival\n");
+          arrival_ev = event_create();
+          arrival_ev->passenger = (passenger_t *)malloc(sizeof(passenger_t));
+          arrival_ev->event_type = EV_ARRIVE;
+          arrival_ev->event_time = time_arrive();
+          event_schedule(arrival_ev);
 
               num_passengers++; //add new passenger count
           }

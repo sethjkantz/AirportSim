@@ -17,18 +17,9 @@ void event_init(void){
 }
 
 /*
-******MEM LEAK IN THIS FUNCTION?*********************
    frees up all event space, including space in the priority
    queue */
 void event_fini(event_t *ev){
-
-  //if(ev != NULL){
-
-    //free(ev->queue);
-    //free(ev->passenger);
-    //free(ev);
-  // }
-
   priority_finalize(eq);
 }
 
@@ -39,7 +30,6 @@ event_t *event_create(void){
   //new_ev->queue = (queue_t *)malloc(sizeof(queue_t));
   new_ev->event_type = EV_ARRIVE; // allows for first increment to be EV_ARRIVE
 
-
   return new_ev;
 }
 
@@ -49,7 +39,6 @@ void event_destroy(event_t *ev){
   //free(ev->passenger);
 
   free(ev);
-
 
 }
 
