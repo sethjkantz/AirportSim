@@ -23,10 +23,12 @@ struct priority_s
    must be able to hold at least size items
    return pointer to the new priority queue, NULL if error */
 priority_t *priority_init()
+priority_t *priority_init(int size)
 {
     priority_t *pri = (priority_t *)malloc(sizeof(priority_t));
     memset(pri, 0, sizeof(priority_t));
     pri->size = PRISIZE;
+    pri->size = size;
     pri->count = 0;
     return pri;
 }
