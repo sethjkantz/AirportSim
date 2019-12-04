@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
+#include <math.h>
 
 #include "sim.h"
 #include "event.h"
@@ -12,23 +13,12 @@
 #include "time.h"
 
 #define MAX_PASS 100
-#define MAX_SCAN 4
+#define MAX_SCAN 1
 #define QSZ 100 /* not used by queue.c */
 
 static void parse_args(int argc, char** argv);
 
-int num_passengers = 0; /* counts the number of passengers */
 
-int atAirlineDesk = 0;
-int atIDDesk = 0;
-int atScanDesk[MAX_SCAN];
-int atTrainDesk = 0;
-
-queue_t *airlineQ;
-queue_t *idQ;
-queue_t *scanQ[MAX_SCAN];
-queue_t *trainQ;
-queue_t *id;
 
 int main(int argc, char **argv)
 {
@@ -37,6 +27,18 @@ int main(int argc, char **argv)
   event_t *temp_ev;
   event_t *new_ev;
   event_t *start_ev;
+  int num_passengers = 0; /* counts the number of passengers */
+
+  int atAirlineDesk = 0;
+  int atIDDesk = 0;
+  int atScanDesk[MAX_SCAN];
+  int atTrainDesk = 0;
+  
+  queue_t *airlineQ;
+  queue_t *idQ;
+  queue_t *scanQ[MAX_SCAN];
+  queue_t *trainQ;
+  queue_t *id;
 
   /* process command line arguments */
     parse_args(argc, argv);
@@ -192,9 +194,10 @@ int main(int argc, char **argv)
 
           // check if any scanners are open, if not find smallest scan queue and
           // store value for passenger to enter
-          for(i=0;i<MAX_SCAN;i++){
+	  min_scanQ = queue_size(scanQ[0]);
+	  for(i=0;i<MAX_SCAN;i++){
 
-            min_scanQ = queue_size(scanQ[0]);
+          
 
             if(atScanDesk[i] == 0){
               printf("passenger %d arrives at scanner %d: %f\n",
@@ -211,7 +214,7 @@ int main(int argc, char **argv)
               event_schedule(temp_ev);
               atScanDesk[i] = 1;
               break; //break out of for loop if an empty queue is found
-            } else if(queue_size(scanQ[i]) < min_scanQ) {
+            } else if(queue_size(scanQ[i]) <= min_scanQ) {
               min_scanQ = i;
             }
 
