@@ -12,16 +12,20 @@
 #include "queue.h"
 #include "time.h"
 
-#define MAX_PASS 100
-#define MAX_SCAN 1
 #define QSZ 100 /* not used by queue.c */
 
+int MAX_PASS = 100;
+int MAX_SCAN = 1;
 static void parse_args(int argc, char** argv);
 
 
 
 int main(int argc, char **argv)
 {
+  /* process command line arguments */
+  parse_args(argc, argv);
+
+
   int i;
   int min_scanQ;
   event_t *temp_ev;
@@ -38,10 +42,8 @@ int main(int argc, char **argv)
   queue_t *idQ;
   queue_t *scanQ[MAX_SCAN];
   queue_t *trainQ;
-  queue_t *id;
 
-  /* process command line arguments */
-    parse_args(argc, argv);
+
 
     /* initialize modules */
     event_init(QSZ);
@@ -315,7 +317,29 @@ int main(int argc, char **argv)
     return 0;
 }
 
+
+// looko for -p for pass and -s for scan
 static void parse_args(int argc,char **argv)
 {
-    /* optional command line args processed here */
+  int opt;
+
+  while((opt = getopt(argc, argv,":tp:s:"))!=-1)
+    {
+      
+      switch(opt){
+      case 'p':
+	MAX_PASS = atoi(optarg);
+	printf("MAX_PASS = %i \n",MAX_PASS);
+	break;
+      case 's':
+	MAX_SCAN = atoi(optarg);
+	printf("MAX_SCAN = %i \n",MAX_SCAN);
+	break;
+      case '?':
+	break;
+      }
+    }
 }
+  
+ 
+
