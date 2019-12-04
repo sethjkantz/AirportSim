@@ -41,6 +41,7 @@ int main(int argc, char **argv)
   event_t *scan_ev;
   event_t *train_ev;
   event_t *id_ev;
+  event_t *gate_ev;
 
   /* process command line arguments */
     parse_args(argc, argv);
@@ -229,11 +230,12 @@ int main(int argc, char **argv)
                new_ev->passenger->pass_id,
                new_ev->event_time);
 
-          scan_ev = event_create();
-          scan_ev->passenger = new_ev->passenger;
-          scan_ev->passenger->train_time = time_get();
-          scan_ev->event_time = time_trainQ();
-          scan_ev->event_type = EV_TRAINQ;
+          train_ev = event_create();
+          train_ev->passenger = new_ev->passenger;
+          train_ev->passenger->train_time = time_get();
+          train_ev->event_time = time_trainQ();
+          train_ev->event_type = EV_TRAINQ;
+          event_schedule(train_ev);
           atScanDesk[new_ev->passenger->scan_num] = 0;
 
           //grab next person from queue
@@ -272,11 +274,11 @@ int main(int argc, char **argv)
                new_ev->passenger->pass_id,
                new_ev->event_time);
 
-          train_ev = event_create();
-          train_ev->passenger = new_ev->passenger;
-          train_ev->passenger->train_time = time_get();
-          train_ev->event_time = time_gate();
-          train_ev->event_type = EV_GATE;
+          gate_ev = event_create();
+          gate_ev->passenger = new_ev->passenger;
+          gate_ev->passenger->train_time = time_get();
+          gate_ev->event_time = time_gate();
+          gate_ev->event_type = EV_GATE;
           event_schedule(train_ev);
           atTrainDesk = 0;
 
