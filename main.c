@@ -176,6 +176,7 @@ int main(int argc, char **argv)
           scan_ev->passenger->id_time = time_get();
           scan_ev->event_time = time_scanQ();
           scan_ev->event_type = EV_SCANQ;
+          atIDDesk = 0;
           //grab next person from queue
           if(queue_peek(idQ)!=NULL){
             id_ev = event_create();
@@ -262,7 +263,7 @@ int main(int argc, char **argv)
             train_ev->event_time = time_train();
             train_ev->event_type = EV_TRAIN;
             event_schedule(train_ev);
-            atIDDesk = 1;
+            atTrainDesk = 1;
           }
             break;
         case (EV_TRAIN) :
