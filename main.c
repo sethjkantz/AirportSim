@@ -209,7 +209,7 @@ int main(int argc, char **argv)
               scan_ev->passenger->scan_num = i;
               scan_ev->passenger->scanQ_time = time_get();
               scan_ev->event_time = time_scan();
-              scan_ev->event_type = SCAN_ID;
+              scan_ev->event_type = EV_SCAN;
               event_schedule(scan_ev);
               atScanDesk = 1;
               break; //break out of for loop if an empty queue is found
