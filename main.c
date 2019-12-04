@@ -275,7 +275,7 @@ int main(int argc, char **argv)
           train_ev = event_create();
           train_ev->passenger = new_ev->passenger;
           train_ev->passenger->train_time = time_get();
-          train_ev->event_time = time_train();
+          train_ev->event_time = time_gate();
           train_ev->event_type = EV_GATE;
           event_schedule(train_ev);
           atTrainDesk = 0;
@@ -285,7 +285,7 @@ int main(int argc, char **argv)
             train_ev = event_create();
             train_ev->passenger = queue_remove(trainQ);
             train_ev->passenger->idQ_time = time_get();
-            train_ev->event_time = time_gate();
+            train_ev->event_time = time_train();
             train_ev->event_type = EV_TRAIN;
             event_schedule(id_ev);
             atTrainDesk = 1;
