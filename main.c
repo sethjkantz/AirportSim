@@ -230,8 +230,8 @@ int main(int argc, char **argv)
           scan_ev = event_create();
           scan_ev->passenger = new_ev->passenger;
           scan_ev->passenger->train_time = time_get();
-          scan_ev->event_time = time_scan();
-          scan_ev->event_type = EV_GATE;
+          scan_ev->event_time = time_trainQ();
+          scan_ev->event_type = EV_TRAINQ;
           atScanDesk[new_ev->passenger->scan_num] = 0;
 
           //grab next person from queue
@@ -258,8 +258,8 @@ int main(int argc, char **argv)
 
             train_ev = event_create();
             train_ev->passenger = new_ev->passenger;
-            train_ev->passenger->idQ_time = time_get();
-            train_ev->event_time = time_id();
+            train_ev->passenger->trainQ_time = time_get();
+            train_ev->event_time = time_train();
             train_ev->event_type = EV_TRAIN;
             event_schedule(train_ev);
             atIDDesk = 1;
@@ -282,14 +282,14 @@ int main(int argc, char **argv)
             train_ev = event_create();
             train_ev->passenger = queue_remove(trainQ);
             train_ev->passenger->idQ_time = time_get();
-            train_ev->event_time = time_id();
-            train_ev->event_type = EV_TRAIN;
+            train_ev->event_time = time_gate();
+            train_ev->event_type = EV_GATE;
             event_schedule(id_ev);
             atTrainDesk = 1;
           }
             break;
         case (EV_GATE) :
-          printf("passenger %d departs: %f\n",
+          printf("---passenger %d departs at gate: %f---\n",
                new_ev->passenger->pass_id,
                new_ev->event_time);
           new_ev->passenger->gate_time = time_get();
