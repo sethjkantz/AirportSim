@@ -199,7 +199,7 @@ int main(int argc, char **argv)
             min_scanQ = queue_size(scanQ[0]);
 
             if(atScanDesk[i] == 0){
-              printf("passenger %d arrives at scanner %d: %f\n"
+              printf("passenger %d arrives at scanner %d: %f\n",
                      new_ev->passenger->pass_id,
                      i,
                      new_ev->event_time);
@@ -211,10 +211,10 @@ int main(int argc, char **argv)
               scan_ev->event_time = time_scan();
               scan_ev->event_type = EV_SCAN;
               event_schedule(scan_ev);
-              atScanDesk = 1;
+              atScanDesk[i] = 1;
               break; //break out of for loop if an empty queue is found
             } else if(queue_size(scanQ[i]) < min_scanQ) {
-              min_scanQ = scanQ[i];
+              min_scanQ = i;
             }
 
             if(i == MAX_SCAN - 1){
