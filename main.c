@@ -21,7 +21,7 @@ int num_passengers = 0; /* counts the number of passengers */
 
 int atAirlineDesk = 0;
 int atIDDesk = 0;
-int atScanDesk = 0;
+int atScanDesk[MAX_SCAN];
 int atTrainDesk = 0;
 
 queue_t *airlineQ;
@@ -33,6 +33,7 @@ queue_t *id;
 int main(int argc, char **argv)
 {
   int i;
+  int min_scanQ;
   event_t *airline_ev;
   event_t *new_ev;
   event_t *start_ev;
@@ -59,8 +60,10 @@ int main(int argc, char **argv)
     airlineQ = queue_init(QSZ);
     idQ = queue_init(QSZ);
     trainQ = queue_init(QSZ);
-    for(i=0;i<MAX_SCAN;i++)
+    for(i=0;i<MAX_SCAN;i++){
       scanQ[i] = queue_init(QSZ);
+      atScanDesk[i] = 0;
+    }
 
     /* run main loop */
     while(!event_empty())
@@ -149,18 +152,18 @@ int main(int argc, char **argv)
                  new_ev->event_time);
 
           if((atIDDesk == 1) ){
-           queue_insert(idQ, new_ev->passenger);
+            queue_insert(idQ, new_ev->passenger);
           }
 
           else if(atIDDesk == 0){
 
-          id_ev = event_create();
-          id_ev->passenger = new_ev->passenger;
-          id_ev->passenger->idQ_time = time_get();
-          id_ev->event_time = time_id();
-          id_ev->event_type = EV_ID;
-          event_schedule(id_ev);
-          atIDDesk = 1;
+            id_ev = event_create();
+            id_ev->passenger = new_ev->passenger;
+            id_ev->passenger->idQ_time = time_get();
+            id_ev->event_time = time_id();
+            id_ev->event_type = EV_ID;
+            event_schedule(id_ev);
+            atIDDesk = 1;
         }
             break;
         case (EV_ID) :
@@ -171,8 +174,8 @@ int main(int argc, char **argv)
           scan_ev = event_create();
           scan_ev->passenger = new_ev->passenger;
           scan_ev->passenger->id_time = time_get();
-          scan_ev->event_time = time_id();
-          scan_ev->event_type = EV_TRAINQ;//FIXME PLEASE CHANGE TO SCANQ
+          scan_ev->event_time = time_scanQ();
+          scan_ev->event_type = EV_SCANQ;
           //grab next person from queue
           if(queue_peek(idQ)!=NULL){
             id_ev = event_create();
@@ -185,9 +188,62 @@ int main(int argc, char **argv)
           }
             break;
         case (EV_SCANQ) :
+          printf("passenger %d arrives in scan queue: %f\n",
+                 new_ev->passenger->pass_id,
+                 new_ev->event_time);
+
+          // check if any scanners are open, if not find smallest scan queue and
+          // store value for passenger to enter
+          for(i=0;i<MAX_SCAN;i++){
+
+            min_scanQ = queue_size(scanQ[0]);
+
+            if(atScanDesk[i] == 0){
+              printf("passenger %d arrives at scanner %d: %f\n"
+                     new_ev->passenger->pass_id,
+                     i,
+                     new_ev->event_time);
+
+              scan_ev = event_create();
+              scan_ev->passenger = new_ev->passenger;
+              scan_ev->passenger->scan_num = i;
+              scan_ev->passenger->scanQ_time = time_get();
+              scan_ev->event_time = time_scan();
+              scan_ev->event_type = SCAN_ID;
+              event_schedule(scan_ev);
+              atScanDesk = 1;
+              break; //break out of for loop if an empty queue is found
+            } else if(queue_size(scanQ[i]) < min_scanQ) {
+              min_scanQ = scanQ[i];
+            }
+
+            if(i == MAX_SCAN - 1){
+              queue_insert(scanQ[min_scanQ], new_ev->passenger);
+            }
+          }
             break;
         case (EV_SCAN) :
-        //empty for now
+          printf("new passenger %d arrives at train: %f\n",
+               new_ev->passenger->pass_id,
+               new_ev->event_time);
+
+          scan_ev = event_create();
+          scan_ev->passenger = new_ev->passenger;
+          scan_ev->passenger->train_time = time_get();
+          scan_ev->event_time = time_scan();
+          scan_ev->event_type = EV_GATE;
+          atScanDesk[new_ev->passenger->scan_num] = 0;
+
+          //grab next person from queue
+          if(queue_peek(scanQ[new_ev->passenger->scan_num])!=NULL){
+            scan_ev = event_create();
+            scan_ev->passenger = queue_remove(scanQ[new_ev->passenger->scan_num]);
+            scan_ev->passenger->idQ_time = time_get();
+            scan_ev->event_time = time_scan();
+            scan_ev->event_type = EV_SCAN;
+            event_schedule(scan_ev);
+            atScanDesk[new_ev->passenger->scan_num] = 1;
+          }
             break;
         case (EV_TRAINQ) :
           printf("passenger %d arrives in train queue: %f\n",
@@ -195,19 +251,19 @@ int main(int argc, char **argv)
                  new_ev->event_time);
 
           if((atTrainDesk == 1) ){
-           queue_insert(trainQ, new_ev->passenger);
+            queue_insert(trainQ, new_ev->passenger);
           }
 
           else if(atTrainDesk == 0){
 
-          train_ev = event_create();
-          train_ev->passenger = new_ev->passenger;
-          train_ev->passenger->idQ_time = time_get();
-          train_ev->event_time = time_id();
-          train_ev->event_type = EV_TRAIN;
-          event_schedule(train_ev);
-          atIDDesk = 1;
-        }
+            train_ev = event_create();
+            train_ev->passenger = new_ev->passenger;
+            train_ev->passenger->idQ_time = time_get();
+            train_ev->event_time = time_id();
+            train_ev->event_type = EV_TRAIN;
+            event_schedule(train_ev);
+            atIDDesk = 1;
+          }
             break;
         case (EV_TRAIN) :
           printf("new passenger %d arrives at train: %f\n",
@@ -217,18 +273,20 @@ int main(int argc, char **argv)
           train_ev = event_create();
           train_ev->passenger = new_ev->passenger;
           train_ev->passenger->train_time = time_get();
-          train_ev->event_time = time_trainQ();
+          train_ev->event_time = time_train();
           train_ev->event_type = EV_GATE;
+          atTrainDesk = 0;
+
         //grab next person from queue
-        if(queue_peek(trainQ)!=NULL){
-          train_ev = event_create();
-          train_ev->passenger = queue_remove(trainQ);
-          train_ev->passenger->idQ_time = time_get();
-          train_ev->event_time = time_id();
-          train_ev->event_type = EV_TRAIN;
-          event_schedule(id_ev);
-          atIDDesk = 1;
-        }
+          if(queue_peek(trainQ)!=NULL){
+            train_ev = event_create();
+            train_ev->passenger = queue_remove(trainQ);
+            train_ev->passenger->idQ_time = time_get();
+            train_ev->event_time = time_id();
+            train_ev->event_type = EV_TRAIN;
+            event_schedule(id_ev);
+            atTrainDesk = 1;
+          }
             break;
         case (EV_GATE) :
           printf("passenger %d departs: %f\n",
