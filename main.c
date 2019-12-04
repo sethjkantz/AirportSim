@@ -308,7 +308,6 @@ int main(int argc, char **argv)
     queue_finalize(airlineQ);
     queue_finalize(idQ);
     queue_finalize(trainQ);
-    queue_finalize(gateQ);
     for(i=0;i<MAX_SCAN;i++)
       queue_finalize(scanQ[i]);
     event_finalize();
