@@ -176,6 +176,7 @@ int main(int argc, char **argv)
           scan_ev->passenger->id_time = time_get();
           scan_ev->event_time = time_scanQ();
           scan_ev->event_type = EV_SCANQ;
+          event_schedule(scan_ev);
           atIDDesk = 0;
           //grab next person from queue
           if(queue_peek(idQ)!=NULL){
